@@ -7,6 +7,7 @@ import Hero from './components/Hero/Hero'
 import ArtistCard from './components/ArtistCard/ArtistCard'
 import ArtistModal from './components/ArtistModal/ArtistModal'
 import Footer from './components/Footer/Footer'
+import { events } from './data/events'
 
 import { artists } from './data/artists'
 
@@ -56,34 +57,70 @@ function App() {
         <main>
           <Hero />
 
-          {/* ABOUT */}
-          <section className="section about" id="about">
-            <div className="section-label">
-              01 / ABOUT
-            </div>
+<section id="about" className="about-section">
+  <div className="about-section-poster">
+    <img
+      src="/images/poster.jpg"
+      alt="HALLOWEEN NIGHT vol.2"
+    />
+  </div>
 
-            <div className="about-content">
-              <h2>
-                Ночь, которую
-                <span> ты не забудешь.</span>
-              </h2>
+  <div className="about-section-content">
 
-              <p>
-                HALLOWEEN NIGHT возвращается.
-                Музыка, тёмная атмосфера и шесть
-                групп на одной сцене.
-              </p>
-            </div>
-          </section>
+    <div className="about-kicker">
+      🩸 HALLOWEEN NIGHT VOL. 2
+    </div>
+
+    <h2>
+      Ночь, которую
+      <span>ты не забудешь.</span>
+    </h2>
+
+    <p className="about-lead">
+      31 ОКТЯБРЯ — большой Halloween-вечер,
+      где музыка, костюмы и атмосфера
+      встретятся в одном месте.
+    </p>
+
+    <div className="about-features">
+      <div className="about-feature">
+        <strong>🎸 7 ГРУПП ИЗ 3 ГОРОДОВ</strong>
+        <span>
+          Семь групп. Разные стили. Один большой Halloween-вечер.
+        </span>
+      </div>
+
+      <div className="about-feature">
+        <strong>👗 COSTUME PARTY</strong>
+        <span>
+          Доставай свой самый безумный образ.
+          В эту ночь можно быть кем угодно. 🎃
+        </span>
+      </div>
+    </div>
+
+    <div className="about-event">
+      <strong>🎃 31 ОКТЯБРЯ • START 17:00</strong>
+
+      <span>
+         🏛 АМПИР ЛОФТ / AMPiR LOFT
+      </span>
+
+      <small>
+        Иваново, улица Жиделёва, 1к19
+      </small>
+    </div>
+
+  </div>
+</section>
 
           {/* ARTISTS */}
           <section className="section artists" id="artists">
             <div className="section-label">
-              02 / ARTISTS
             </div>
 
             <div className="section-heading">
-              <h2>ГРУППЫ</h2>
+              <h2>ARTISTS</h2>
             </div>
 
             <div className="artists-grid">
@@ -100,7 +137,6 @@ function App() {
           {/* PHOTOS */}
           <section className="section photos" id="photos">
             <div className="section-label">
-              03 / PHOTOS
             </div>
 
             <h2>ФОТО</h2>
@@ -113,7 +149,6 @@ function App() {
           {/* MUSIC */}
           <section className="section music" id="music">
             <div className="section-label">
-              04 / MUSIC
             </div>
 
             <h2>МУЗЫКА</h2>
@@ -126,7 +161,6 @@ function App() {
           {/* TICKETS */}
           <section className="section tickets" id="tickets">
             <div className="section-label">
-              05 / TICKETS
             </div>
 
             <div className="tickets-content">

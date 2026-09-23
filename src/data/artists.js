@@ -1,6 +1,6 @@
 export const artists = [
 {
-  id: 'rnpm ockin-bones',
+  id: 'rockin-bones',
   name: "Rockin' Bones",
   genre: 'Horror-punk / Punk-rock',
 
@@ -25,14 +25,14 @@ export const artists = [
       icon: '/icons/social/yandex-music.svg',
     }
   ],
-   tracks: [
-    {
-      id: "Rockin' Bones - Beetlejuice.mp3",
-      title: 'Beetlejuice',
-      duration: '2:21',
-      audioUrl: "/audio/artists/rockin-bones/Rockin' Bones - Beetlejuice.mp3",
-    },
-    ],
+tracks: [
+  {
+    id: 'beetlejuice',
+    title: 'Beetlejuice',
+    duration: '2:21',
+    audioUrl: "/audio/artists/rockin-bones/Rockin' Bones - Beetlejuice.mp3",
+  },
+],
 },
 
   {

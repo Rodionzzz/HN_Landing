@@ -74,6 +74,20 @@ function ArtistModal({ artist, onClose }) {
   }
 
   const handleEnded = () => {
+    const tracks = artist.tracks || []
+    const currentIndex = tracks.findIndex((item) => item.id === playingTrackId)
+    const nextTrack = tracks[currentIndex + 1]
+
+    if (nextTrack?.audioUrl) {
+      const audio = audioRef.current
+      audio.src = nextTrack.audioUrl
+      audio.currentTime = 0
+      audio.play()
+      setPlayingTrackId(nextTrack.id)
+      setProgress(0)
+      return
+    }
+
     setPlayingTrackId(null)
     setProgress(0)
   }
@@ -96,12 +110,22 @@ function ArtistModal({ artist, onClose }) {
       <div className="artist-modal-background-overlay" />
 
       {/* Окно */}
-      <div className="artist-modal-window">
+      <div className={`artist-modal-window${playingTrackId ? ' is-playing' : ''}`}>
         <audio
           ref={audioRef}
           onTimeUpdate={handleTimeUpdate}
           onEnded={handleEnded}
         />
+
+        {/* Тлеющие искры */}
+        <div className="artist-modal-embers" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
 
         {/* Закрыть */}
         <button
@@ -168,14 +192,6 @@ function ArtistModal({ artist, onClose }) {
                       className={`artist-track${isActive ? ' is-active' : ''}`}
                     >
                       <div className="artist-track-row">
-                        <span className="artist-track-title">{track.title}</span>
-
-                        {track.duration && (
-                          <span className="artist-track-duration">
-                            {track.duration}
-                          </span>
-                        )}
-
                         <button
                           type="button"
                           className="artist-track-play-btn"
@@ -188,6 +204,22 @@ function ArtistModal({ artist, onClose }) {
                         >
                           {isActive ? '❚❚' : '▶'}
                         </button>
+
+                        <span className="artist-track-title">{track.title}</span>
+
+                        {isActive && (
+                          <span className="artist-eq" aria-hidden="true">
+                            <i></i>
+                            <i></i>
+                            <i></i>
+                          </span>
+                        )}
+
+                        {track.duration && (
+                          <span className="artist-track-duration">
+                            {track.duration}
+                          </span>
+                        )}
                       </div>
 
                       <div className="artist-track-progress">

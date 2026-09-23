@@ -18,6 +18,6 @@ export const events = [
     ],
 
     photos: [],
-    ticketUrl: '',
+    ticketUrl: 'https://qtickets.ru/event/258990?base_color=e07400',
   },
 ]

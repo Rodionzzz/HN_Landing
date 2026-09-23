@@ -260,13 +260,9 @@ function Hero() {
       </div>
 
 
-      <div className="hero-scroll">
-        <span>
-          SCROLL
-        </span>
-
-        <i />
-      </div>
+<div className="hero-scroll">
+  <i></i>
+</div>
 
 
       <div className="hero-corner hero-corner-left" />

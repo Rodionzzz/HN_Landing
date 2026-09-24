@@ -1,9 +1,9 @@
-function Header() {
+function Header({ onTicketClick }) {
   return (
     <header className="header">
       <a href="#top" className="logo" aria-label="Halloween Night">
-        <span>H</span>
-        <span>N</span>
+        <span>Halloween</span>
+        <span>Night</span>
       </a>
 
       <nav className="nav">
@@ -14,10 +14,15 @@ function Header() {
         <a href="#tickets">Билеты</a>
       </nav>
 
-      <a href="#tickets" className="header-ticket">
-        Купить билет
-      </a>
-    </header>
+<button
+  type="button"
+  className="header-ticket"
+  onClick={onTicketClick}
+>
+  Купить билет
+</button>
+
+</header>
   )
 }
 

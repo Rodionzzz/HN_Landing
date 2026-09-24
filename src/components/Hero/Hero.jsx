@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-function Hero() {
+function Hero({ onTicketClick }) {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -171,18 +171,13 @@ function Hero() {
           </div>
 
 
-          <a
-            href="#tickets"
-            className="hero-ticket"
-          >
-            <span>
-              Купить билет
-            </span>
-
-            <span className="ticket-arrow">
-              ↗
-            </span>
-          </a>
+<button
+  type="button"
+  className="header-ticket"
+  onClick={onTicketClick}
+>
+  Купить билет
+</button>
 
         </div>
 

@@ -1,5 +1,67 @@
 import { useEffect, useState } from 'react'
 
+// Текущий выпуск: считаем до 31 октября 2026, 17:00 (Москва)
+const EVENT_TIME = new Date('2026-10-31T17:00:00+03:00').getTime()
+
+// 1 ноября 2026, 12:00 (Москва) — момент, когда прошедший выпуск
+// сменяется на следующий: VOL. 2 -> VOL. 3, и отсчёт стартует заново
+const VOL_SWITCH_TIME = new Date('2026-11-01T12:00:00+03:00').getTime()
+
+// Дата следующего выпуска (VOL. 3), до которой пойдёт новый отсчёт
+const NEXT_EVENT_TIME = new Date('2027-10-31T17:00:00+03:00').getTime()
+
+// Момент открытия страницы — нужен только для ?demo=soon (см. ниже)
+const pageLoadTime = Date.now()
+
+/*
+  Симуляция для проверки без ожидания реальных дат.
+  Добавь в адресную строку:
+    ?demo=soon     — таймер сам досчитает до нуля за 10 секунд,
+                     и ты увидишь вспышку/тряску/«НАЧАЛОСЬ» вживую
+    ?demo=finished — сразу состояние "началось" (VOL. 2, оверлей)
+    ?demo=vol3     — сразу состояние VOL. 3, отсчёт к 2027 году
+  Без параметра — обычная логика по реальным датам.
+*/
+const getNow = () => {
+  const demo = new URLSearchParams(window.location.search).get('demo')
+
+  if (demo === 'soon') {
+    const elapsed = Date.now() - pageLoadTime
+    return EVENT_TIME - 10000 + elapsed
+  }
+
+  if (demo === 'finished') {
+    return EVENT_TIME + 5000
+  }
+
+  if (demo === 'vol3') {
+    return VOL_SWITCH_TIME + 5000
+  }
+
+  return Date.now()
+}
+
+const computeTimeLeft = (msDiff) => {
+  if (msDiff <= 0) {
+    return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+  }
+
+  return {
+    days: Math.floor(
+      msDiff / (1000 * 60 * 60 * 24)
+    ),
+    hours: Math.floor(
+      (msDiff / (1000 * 60 * 60)) % 24
+    ),
+    minutes: Math.floor(
+      (msDiff / (1000 * 60)) % 60
+    ),
+    seconds: Math.floor(
+      (msDiff / 1000) % 60
+    ),
+  }
+}
+
 function Hero({ onTicketClick }) {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -8,13 +70,27 @@ function Hero({ onTicketClick }) {
     seconds: 0,
   })
 
+  // Номер выпуска, который показываем рядом с NIGHT (VOL. 2 / VOL. 3 ...)
+  const [volNumber, setVolNumber] = useState(2)
+
+  // true в промежутке между началом текущего выпуска и переключением
+  // на следующий — показываем "НАЧАЛОСЬ" и финальные эффекты таймера
+  const [isFinished, setIsFinished] = useState(false)
+
   useEffect(() => {
-    const targetDate = new Date('2026-10-31T17:00:00+03:00')
-
     const updateCountdown = () => {
-      const difference = targetDate.getTime() - Date.now()
+      const now = getNow()
 
-      if (difference <= 0) {
+      if (now >= VOL_SWITCH_TIME) {
+        setVolNumber(3)
+        setIsFinished(false)
+        setTimeLeft(computeTimeLeft(NEXT_EVENT_TIME - now))
+        return
+      }
+
+      if (now >= EVENT_TIME) {
+        setVolNumber(2)
+        setIsFinished(true)
         setTimeLeft({
           days: 0,
           hours: 0,
@@ -24,20 +100,9 @@ function Hero({ onTicketClick }) {
         return
       }
 
-      setTimeLeft({
-        days: Math.floor(
-          difference / (1000 * 60 * 60 * 24)
-        ),
-        hours: Math.floor(
-          (difference / (1000 * 60 * 60)) % 24
-        ),
-        minutes: Math.floor(
-          (difference / (1000 * 60)) % 60
-        ),
-        seconds: Math.floor(
-          (difference / 1000) % 60
-        ),
-      })
+      setVolNumber(2)
+      setIsFinished(false)
+      setTimeLeft(computeTimeLeft(EVENT_TIME - now))
     }
 
     updateCountdown()
@@ -86,7 +151,16 @@ function Hero({ onTicketClick }) {
 
 
   return (
-    <section className="hero" id="top">
+    <section
+      className={`hero${isFinished ? ' is-finished' : ''}`}
+      id="top"
+    >
+
+      {isFinished && (
+        <div className="hero-finale-message" aria-hidden="true">
+          НАЧАЛОСЬ
+        </div>
+      )}
 
       <div className="hero-background">
 
@@ -124,7 +198,7 @@ function Hero({ onTicketClick }) {
           type="button"
           aria-label="Добавить мероприятие в календарь"
         >
-          <span>31 OCTOBER 2026</span>
+          <span>31 OCTOBER {volNumber === 2 ? 2026 : 2027}</span>
 
           <span className="topline-line" />
 
@@ -148,7 +222,7 @@ function Hero({ onTicketClick }) {
 
           <div className="title-vol">
             <span>VOL.</span>
-            <strong>2</strong>
+            <strong>{volNumber}</strong>
           </div>
 
         </div>

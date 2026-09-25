@@ -4,7 +4,7 @@ export const artists = [
     name: "Rockin' Bones",
     genre: 'Horror-punk / Punk-rock',
     description:
-      'Музыкальная группа из Иванова, играющая в жанре хоррор-панк (horror punk). Коллектив позиционирует себя как «новая надежда российского хоррор-панка», сочетая мрачную эстетику ужасов, мощный драйв и запоминающиеся мелодии.',
+      "Rockin' Bones — это дух Хэллоуина, пойманный в ловушку гитарных усилителей.🎸Это жуткое, бесконечно заразительное празднование тьмы, где низкий, мрачный женский вокал проведёт вас через самую весёлую и страшную ночь в вашей жизни.🌕 Так что…👻 Заходи в наш полуночный склеп — если осмелишься.",
     image: '/images/artists/rockin-bones.jpg',
     cover: '/images/artists/rockin-bones-cover.jpg',
     socials: [
@@ -26,45 +26,63 @@ export const artists = [
         id: 'beetlejuice',
         title: 'Beetlejuice',
         duration: '2:21',
-        audioUrl: "/audio/artists/rockin-bones/Rockin' Bones - Beetlejuice.mp3",
+
+        platforms: {
+          yandexMusic: {
+            url: 'https://music.yandex.ru/album/43173064/track/153907608',
+            iframeUrl: 'https://music.yandex.ru/iframe/album/43173064/track/153907608',
+          },
+        },
+      },
+      {
+        id: 'gloom_serenade',
+        title: 'Gloom Serenade',
+        duration: '2:51',
+
+        platforms: {
+          yandexMusic: {
+            url: 'https://music.yandex.ru/album/38872580/track/144462342',
+            iframeUrl: 'https://music.yandex.ru/iframe/album/38872580/track/144462342',
+          },
+        },
       },
     ],
   },
 
   {
-    id: 'methtripper',
-    name: 'MethTripper',
-    genre: 'Hardcore / Sludge',
+    id: 'electrozombie',
+    name: 'ЭЛЕКТРОЗОМБИ',
+    genre: 'Панк-рок',
     description:
-      'Ивановские алхимики лучше многих знают, как менять формы своих треков: превращая грайндкор в нойз или замедляя дэт-метал практически до сладжевого кача. В этом диком жанровом месиве рождаются свирепые, психопатические сеты с зашкаливающей эмоциональной подачей!',
-    image: '/images/artists/methtripper.jpg',
-    cover: '/images/artists/methtripper-cover.jpg',
+      '«ЭЛЕКТРОЗОМБИ» — идейная и неутомимая панк-рок формация, за плечами которой годы упорной работы, полноформатные альбомы, яркие релизы и обширная география концертов. В своем творчестве группа органично объединяет классические каноны русского панк-рока, социальный сарказм и колоритную хоррор-тематику. Их песни — это искренний протест, пропущенный через призму черного юмора, гротеска и сокрушительного живого напора.',
+    image: '/images/artists/electro-zombi.jpg',
+    cover: '/images/artists/electrozombie-cover.jpg',
     socials: [
       {
         type: 'vk',
         name: 'VK',
-        url: 'https://vk.ru/methtripper',
+        url: 'https://vk.ru/electrozombie',
         icon: '/icons/social/vk.svg',
       },
       {
         type: 'yandex-music',
         name: 'Яндекс Музыка',
-        url: 'https://music.yandex.ru/artist/24472519',
+        url: 'https://music.yandex.ru/artist/1556549',
         icon: '/icons/social/yandex-music.svg',
       }
     ],
     tracks: [
       {
-        id: 's41',
-        title: 'S.41',
-        duration: '4:34',
-        audioUrl: '/audio/artists/methtripper/MethTripper - S.41.mp3',
+        id: 'rasputin',
+        title: 'Распутин',
+        duration: '2:42',
+        audioUrl: '/audio/artists/electrozombie/Electrozombie - Rasputin.mp3',
       },
       {
-        id: 'mass-psychosis',
-        title: 'Mass Psychosis Consequences',
-        duration: '3:20',
-        audioUrl: '/audio/artists/methtripper/MethTripper - Mass Psychosis Consequences.mp3',
+        id: 'vrag-obshchestva',
+        title: 'Враг общества',
+        duration: '2:17',
+        audioUrl: '/audio/artists/electrozombie/Electrozombie - Vrag obshchestva.mp3',
       },
     ],
   },
@@ -146,39 +164,39 @@ export const artists = [
   },
 
   {
-    id: 'electrozombie',
-    name: 'ЭЛЕКТРОЗОМБИ',
-    genre: 'Панк-рок',
+    id: 'methtripper',
+    name: 'MethTripper',
+    genre: 'Hardcore / Sludge',
     description:
-      '«ЭЛЕКТРОЗОМБИ» — идейная и неутомимая панк-рок формация, за плечами которой годы упорной работы, полноформатные альбомы, яркие релизы и обширная география концертов. В своем творчестве группа органично объединяет классические каноны русского панк-рока, социальный сарказм и колоритную хоррор-тематику. Их песни — это искренний протест, пропущенный через призму черного юмора, гротеска и сокрушительного живого напора.',
-    image: '/images/artists/electro-zombi.jpg',
-    cover: '/images/artists/electrozombie-cover.jpg',
+      'Ивановские алхимики лучше многих знают, как менять формы своих треков: превращая грайндкор в нойз или замедляя дэт-метал практически до сладжевого кача. В этом диком жанровом месиве рождаются свирепые, психопатические сеты с зашкаливающей эмоциональной подачей!',
+    image: '/images/artists/methtripper.jpg',
+    cover: '/images/artists/methtripper-cover.jpg',
     socials: [
       {
         type: 'vk',
         name: 'VK',
-        url: 'https://vk.ru/electrozombie',
+        url: 'https://vk.ru/methtripper',
         icon: '/icons/social/vk.svg',
       },
       {
         type: 'yandex-music',
         name: 'Яндекс Музыка',
-        url: 'https://music.yandex.ru/artist/1556549',
+        url: 'https://music.yandex.ru/artist/24472519',
         icon: '/icons/social/yandex-music.svg',
       }
     ],
     tracks: [
       {
-        id: 'rasputin',
-        title: 'Распутин',
-        duration: '2:42',
-        audioUrl: '/audio/artists/electrozombie/Electrozombie - Rasputin.mp3',
+        id: 's41',
+        title: 'S.41',
+        duration: '4:34',
+        audioUrl: '/audio/artists/methtripper/MethTripper - S.41.mp3',
       },
       {
-        id: 'vrag-obshchestva',
-        title: 'Враг общества',
-        duration: '2:17',
-        audioUrl: '/audio/artists/electrozombie/Electrozombie - Vrag obshchestva.mp3',
+        id: 'mass-psychosis',
+        title: 'Mass Psychosis Consequences',
+        duration: '3:20',
+        audioUrl: '/audio/artists/methtripper/MethTripper - Mass Psychosis Consequences.mp3',
       },
     ],
   },
@@ -219,5 +237,22 @@ export const artists = [
         audioUrl: '/audio/artists/the-sadness/The Sadness - Ograda.mp3',
       },
     ],
+  },
+
+  {
+    id: 'jesha',
+    name: 'Jesha',
+    genre: 'Метал рок',
+    description: 'Описание jesha',
+    image: '/images/artists/jesha.jpg',
+    cover: '',
+    socials: [
+      {
+        type: 'yandex-music',
+        name: 'Яндекс Музыка',
+        url: 'https://music.yandex.ru/artist/11014122',
+        icon: '/icons/social/yandex-music.svg',
+      }
+    ],
   }
-]
+];

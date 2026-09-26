@@ -13,6 +13,7 @@ import Schedule from './components/Schedule/Schedule'
 import PhotoCarousel from './components/PhotoCarousel/PhotoCarousel'
 
 import { artists } from './data/artists'
+import { asset } from './utils/asset'
 
 function App() {
   const [selectedArtist, setSelectedArtist] = useState(null)
@@ -71,7 +72,7 @@ function App() {
           <section id="about" className="about-section">
             <div className="about-section-poster">
               <img
-                src="/images/poster.jpg"
+                src={asset('/images/poster.jpg')}
                 alt="HALLOWEEN NIGHT vol.2"
               />
             </div>

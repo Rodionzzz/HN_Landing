@@ -1,12 +1,15 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-export default defineConfig({
+// https://vite.dev/config/
+export default defineConfig(({ command }) => ({
   plugins: [react()],
 
-  // Название репозитория Rodionzzz/HN_Landing —
-  // поэтому base должен совпадать с именем репо.
-  // Когда подключишь свой домен и сайт будет открываться
-  // с корня — поменяй это значение на '/'.
-  base: '/HN_Landing/',
-})
+  // Локально (npm run dev / npm run preview) base остаётся '/' —
+  // всё работает как раньше, картинки не пропадают.
+  // При сборке (npm run build, в том числе в GitHub Actions)
+  // base становится '/HN_Landing/' — так нужно для GitHub Pages,
+  // пока не подключён свой домен. Когда подключишь домен —
+  // поменяй '/HN_Landing/' на '/'.
+  base: command === 'build' ? '/HN_Landing/' : '/',
+}))

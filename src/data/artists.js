@@ -26,6 +26,7 @@ export const artists = [
         id: 'beetlejuice',
         title: 'Beetlejuice',
         duration: '2:21',
+        audioUrl: '/audio/artists/rockin-bones/beetlejuice.mp3',
         platforms: {
           yandexMusic: {
             url: 'https://music.yandex.ru/album/43173064/track/153907608',
@@ -37,6 +38,7 @@ export const artists = [
         id: 'gloom_serenade',
         title: 'Gloom Serenade',
         duration: '2:51',
+        audioUrl: '/audio/artists/rockin-bones/gloom_serenade.mp3',
         platforms: {
           yandexMusic: {
             url: 'https://music.yandex.ru/album/38872580/track/144462342',
@@ -45,7 +47,7 @@ export const artists = [
         },
       },
     ],
-  },
+  }, // <-- Вот здесь не хватало закрывающей скобки объекта и запятой
 
   {
     id: 'electrozombie',
@@ -66,25 +68,25 @@ export const artists = [
         type: 'yandex-music',
         name: 'Яндекс Музыка',
         url: 'https://music.yandex.ru/artist/1556549',
-        icon: '/icons/social/yandex-music.svg', // Ссылка на SVG: https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/yandexmusic.svg
+        icon: '/icons/social/yandex-music.svg',
       },
       {
         type: 'telegram',
         name: 'Telegram',
         url: 'https://t.me/xoxa_xoi',
-        icon: '/icons/social/telegram.svg', // Ссылка на SVG: https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/telegram.svg
+        icon: '/icons/social/telegram.svg',
       },
       {
         type: 'bandcamp',
         name: 'Bandcamp',
         url: 'https://electrozombi.bandcamp.com',
-        icon: '/icons/social/bandcamp.svg', // Ссылка на SVG: https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/bandcamp.svg
+        icon: '/icons/social/bandcamp.svg',
       },
       {
         type: 'youtube',
         name: 'YouTube',
         url: 'https://www.youtube.com/@TV-ks1vg',
-        icon: '/icons/social/youtube.svg', // Ссылка на SVG: https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/youtube.svg
+        icon: '/icons/social/youtube.svg',
       }
     ],
     tracks: [
@@ -92,6 +94,7 @@ export const artists = [
         id: 'rasputin',
         title: 'Распутин',
         duration: '2:42',
+        audioUrl: '/audio/artists/electrozombie/rasputin.mp3',
         platforms: {
           yandexMusic: {
             url: 'https://music.yandex.ru/album/11340238/track/68415760',
@@ -103,6 +106,7 @@ export const artists = [
         id: 'vrag-obshchestva',
         title: 'Враг общества',
         duration: '2:17',
+        audioUrl: '/audio/artists/electrozombie/vrag-obshchestva.mp3',
         platforms: {
           yandexMusic: {
             url: 'https://music.yandex.ru/album/11340213/track/68415687',
@@ -111,7 +115,7 @@ export const artists = [
         },
       },
     ],
-  },
+  }, // <-- И здесь
 
   {
     id: 'issin',
@@ -140,6 +144,7 @@ export const artists = [
         id: 'baba-gaba',
         title: 'Баба Габа',
         duration: '3:52',
+        audioUrl: '/audio/artists/issin/baba-gaba.mp3',
         platforms: {
           yandexMusic: {
             url: 'https://music.yandex.ru/album/27626700/track/117939896',
@@ -151,6 +156,7 @@ export const artists = [
         id: 'muzika-i-tabletki',
         title: 'Музыка и таблетки',
         duration: '3:19',
+        audioUrl: '/audio/artists/issin/muzika-i-tabletki.mp3',
         platforms: {
           yandexMusic: {
             url: 'https://music.yandex.ru/album/34992049/track/135224120',
@@ -159,12 +165,12 @@ export const artists = [
         },
       },
     ],
-  },
+  }, // <-- И здесь
 
   {
     id: 'zherd',
     name: 'ЖЕРДЬ',
-genre: 'Noise-rock / Post-hardcore / Sludge',
+    genre: 'Noise-rock / Post-hardcore / Sludge',
     description:
       '«ЖЕРДЬ» — экстремальный музыкальный проект, балансирующий на стыке бескомпромиссного нойз-рока, пост-хардкора и авангардного шума. Их композиции представляют собой монолитную стену звука, где ломаные, рваные ритмические рисунки сталкиваются с агрессивными гитарными стенами и экспрессивной подачей. Это музыка не для фонового прослушивания, а настоящий звуковой катарсис, исследующий темные стороны человеческого подсознания через первобытную мощь дисторшна.',
     image: '/images/artists/jerd.jpg',
@@ -188,6 +194,7 @@ genre: 'Noise-rock / Post-hardcore / Sludge',
         id: 'vremya-sozhalet',
         title: 'Время сожалеть',
         duration: '2:31',
+        audioUrl: '/audio/artists/zherd/vremya-sozhalet.mp3',
         platforms: {
           yandexMusic: {
             url: 'https://music.yandex.ru/album/40392055/track/147602712',
@@ -199,6 +206,7 @@ genre: 'Noise-rock / Post-hardcore / Sludge',
         id: 'kriki-na-vetru',
         title: 'Крики на ветру',
         duration: '3:45',
+        audioUrl: '/audio/artists/zherd/kriki-na-vetru.mp3',
         platforms: {
           yandexMusic: {
             url: 'https://music.yandex.ru/album/41316619/track/149631507',
@@ -207,7 +215,7 @@ genre: 'Noise-rock / Post-hardcore / Sludge',
         },
       },
     ],
-  },
+  }, // <-- И здесь
 
   {
     id: 'methtripper',
@@ -242,6 +250,7 @@ genre: 'Noise-rock / Post-hardcore / Sludge',
         id: 's41',
         title: 'S.41',
         duration: '4:34',
+        audioUrl: '/audio/artists/methtripper/s41.mp3',
         platforms: {
           yandexMusic: {
             url: 'https://music.yandex.ru/album/42735789/track/152277549',
@@ -253,6 +262,7 @@ genre: 'Noise-rock / Post-hardcore / Sludge',
         id: 'selfmadegod',
         title: 'SelfMadeGod',
         duration: '3:09',
+        audioUrl: '/audio/artists/methtripper/selfmadegod.mp3',
         platforms: {
           yandexMusic: {
             url: 'https://music.yandex.ru/album/37462387/track/141112108',
@@ -261,7 +271,7 @@ genre: 'Noise-rock / Post-hardcore / Sludge',
         },
       },
     ],
-  },
+  }, // <-- И здесь
 
   {
     id: 'the-sadness',
@@ -292,22 +302,23 @@ genre: 'Noise-rock / Post-hardcore / Sludge',
       }
     ],
     tracks: [
-{
-  id: 'kraym',
-  title: 'Крайм',
-  duration: '2:59',
-  audioUrl: '/audio/artists/the-sadness/kraym.mp3',
-  platforms: {
-    yandexMusic: {
-      url: 'https://music.yandex.ru/album/41954525/track/151083775',
-      iframeUrl: 'https://music.yandex.ru/iframe/album/41954525/track/151083775',
-    },
-  },
-},
+      {
+        id: 'kraym',
+        title: 'Крайм',
+        duration: '2:59',
+        audioUrl: '/audio/artists/the-sadness/kraym.mp3',
+        platforms: {
+          yandexMusic: {
+            url: 'https://music.yandex.ru/album/41954525/track/151083775',
+            iframeUrl: 'https://music.yandex.ru/iframe/album/41954525/track/151083775',
+          },
+        },
+      },
       {
         id: 'mayak',
         title: 'Маяк',
         duration: '4:47',
+        audioUrl: '/audio/artists/the-sadness/mayak.mp3',
         platforms: {
           yandexMusic: {
             url: 'https://music.yandex.ru/album/42750671/track/152910962',
@@ -338,6 +349,7 @@ genre: 'Noise-rock / Post-hardcore / Sludge',
         id: 'krasivye-sny',
         title: 'Красивые сны',
         duration: '3:09',
+        audioUrl: '/audio/artists/jesha/krasivye-sny.mp3',
         platforms: {
           yandexMusic: {
             url: 'https://music.yandex.ru/album/17921681/track/90576406',
@@ -349,6 +361,7 @@ genre: 'Noise-rock / Post-hardcore / Sludge',
         id: 'nervy',
         title: 'Нервы',
         duration: '3:25',
+        audioUrl: '/audio/artists/jesha/nervy.mp3',
         platforms: {
           yandexMusic: {
             url: 'https://music.yandex.ru/album/14193403/track/78792532',

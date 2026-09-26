@@ -2,9 +2,17 @@ import { useEffect, useRef, useState } from 'react'
 
 function ArtistModal({ artist, onClose }) {
   const audioRef = useRef(null)
-  const [playingTrackId, setPlayingTrackId] = useState(null)
-  const [selectedTrackId, setSelectedTrackId] = useState(null)
-  const [progress, setProgress] = useState(0)
+const [playingTrackId, setPlayingTrackId] = useState(null)
+const [selectedTrackId, setSelectedTrackId] = useState(null)
+const [progress, setProgress] = useState(0)
+const [currentTime, setCurrentTime] = useState(0)
+
+const formatTime = (seconds) => {
+  const total = Math.max(0, Math.floor(seconds || 0))
+  const m = Math.floor(total / 60)
+  const s = total % 60
+  return `${m}:${String(s).padStart(2, '0')}`
+}
 
   useEffect(() => {
     if (!artist) {
@@ -29,12 +37,13 @@ function ArtistModal({ artist, onClose }) {
   }, [artist, onClose])
 
   // Останавливаем плеер при закрытии модалки или смене артиста
-  useEffect(() => {
-    audioRef.current?.pause()
-    setPlayingTrackId(null)
-    setSelectedTrackId(null)
-    setProgress(0)
-  }, [artist])
+useEffect(() => {
+  audioRef.current?.pause()
+  setPlayingTrackId(null)
+  setSelectedTrackId(null)
+  setProgress(0)
+  setCurrentTime(0)
+}, [artist])
 
   if (!artist) {
     return null
@@ -46,77 +55,103 @@ function ArtistModal({ artist, onClose }) {
     }
   }
 
-  const handleTrackClick = (track) => {
-    const externalUrl = track.platforms?.yandexMusic?.iframeUrl
-    const audio = audioRef.current
+const isMobileViewport = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia('(pointer: coarse)').matches
 
-    // Внешний плеер: открываем/закрываем iframe выбранного трека.
-    if (externalUrl) {
+const handleTrackClick = (track) => {
+  const externalUrl = track.platforms?.yandexMusic?.iframeUrl
+  const audio = audioRef.current
+
+  if (externalUrl) {
+    const willOpen = selectedTrackId !== track.id
+
+    if (isMobileViewport() && track.audioUrl && audio) {
+      // Мобилка: играем локальное превью, фрейм — просто визуальная витрина.
+      if (willOpen) {
+        if (audio.src !== track.audioUrl) {
+          audio.src = track.audioUrl
+          audio.currentTime = 0
+        }
+
+        audio.play()
+          .then(() => setPlayingTrackId(track.id))
+          .catch(() => setPlayingTrackId(null))
+      } else {
+        audio.pause()
+        setPlayingTrackId(null)
+      }
+    } else {
+      // PC: наш audio вообще не участвует, играет сам фрейм Яндекса.
       if (audio) {
         audio.pause()
       }
-
       setPlayingTrackId(null)
-      setProgress(0)
-      setSelectedTrackId((currentId) =>
-        currentId === track.id ? null : track.id
-      )
-      return
     }
 
-    // Обратная совместимость для локальных audioUrl.
-    if (!audio || !track.audioUrl) {
-      return
-    }
-
-    setSelectedTrackId(null)
-
-    if (playingTrackId === track.id) {
-      audio.pause()
-      setPlayingTrackId(null)
-      return
-    }
-
-    if (audio.src !== track.audioUrl) {
-      audio.src = track.audioUrl
-      audio.currentTime = 0
-    }
-
-    audio.play()
-      .then(() => {
-        setPlayingTrackId(track.id)
-      })
-      .catch(() => {
-        setPlayingTrackId(null)
-      })
-  }
-
-  const handleTimeUpdate = () => {
-    const audio = audioRef.current
-    if (!audio || !audio.duration) {
-      return
-    }
-    setProgress((audio.currentTime / audio.duration) * 100)
-  }
-
-  const handleEnded = () => {
-    const tracks = artist.tracks || []
-    const currentIndex = tracks.findIndex((item) => item.id === playingTrackId)
-    const nextTrack = tracks[currentIndex + 1]
-
-    if (nextTrack?.audioUrl) {
-      const audio = audioRef.current
-      audio.src = nextTrack.audioUrl
-      audio.currentTime = 0
-      audio.play()
-      setPlayingTrackId(nextTrack.id)
-      setProgress(0)
-      return
-    }
-
-    setPlayingTrackId(null)
     setProgress(0)
+    setCurrentTime(0)
+    setSelectedTrackId(willOpen ? track.id : null)
+    return
   }
+
+  // Треки без yandexMusic (чистый audioUrl) — без изменений.
+  if (!audio || !track.audioUrl) {
+    return
+  }
+
+  setSelectedTrackId(null)
+
+  if (playingTrackId === track.id) {
+    audio.pause()
+    setPlayingTrackId(null)
+    return
+  }
+
+  if (audio.src !== track.audioUrl) {
+    audio.src = track.audioUrl
+    audio.currentTime = 0
+  }
+
+  audio.play()
+    .then(() => setPlayingTrackId(track.id))
+    .catch(() => setPlayingTrackId(null))
+}
+
+const handleTimeUpdate = () => {
+  const audio = audioRef.current
+  if (!audio) {
+    return
+  }
+
+  setCurrentTime(audio.currentTime)
+
+  if (!audio.duration) {
+    return
+  }
+  setProgress((audio.currentTime / audio.duration) * 100)
+}
+
+const handleEnded = () => {
+  const tracks = artist.tracks || []
+  const currentIndex = tracks.findIndex((item) => item.id === playingTrackId)
+  const nextTrack = tracks[currentIndex + 1]
+
+  if (nextTrack?.audioUrl) {
+    const audio = audioRef.current
+    audio.src = nextTrack.audioUrl
+    audio.currentTime = 0
+    audio.play()
+    setPlayingTrackId(nextTrack.id)
+    setProgress(0)
+    setCurrentTime(0)
+    return
+  }
+
+  setPlayingTrackId(null)
+  setProgress(0)
+  setCurrentTime(0)
+}
 
   return (
     <div
@@ -224,20 +259,22 @@ function ArtistModal({ artist, onClose }) {
                       }`}
                     >
                       <div className="artist-track-row">
-                        <button
-                          type="button"
-                          className="artist-track-play-btn"
-                          onClick={() => handleTrackClick(track)}
-                          aria-label={
-                            isPlaying
-                              ? `Пауза: ${track.title}`
-                              : hasExternalPlayer
-                                ? `Открыть плеер: ${track.title}`
-                                : `Слушать ${track.title}`
-                          }
-                        >
-                          {isPlaying ? '❚❚' : '▶'}
-                        </button>
+<button
+  type="button"
+  className="artist-track-play-btn"
+  onClick={() => handleTrackClick(track)}
+  aria-label={
+    isPlaying
+      ? `Пауза: ${track.title}`
+      : hasExternalPlayer
+        ? `Открыть плеер: ${track.title}`
+        : `Слушать ${track.title}`
+  }
+>
+  <span className="artist-track-play-icon">
+    {isPlaying ? '❚❚' : '▶'}
+  </span>
+</button>
 
                         <span className="artist-track-title">{track.title}</span>
 
@@ -249,11 +286,11 @@ function ArtistModal({ artist, onClose }) {
                           </span>
                         )}
 
-                        {track.duration && (
-                          <span className="artist-track-duration">
-                            {track.duration}
-                          </span>
-                        )}
+{(isPlaying || track.duration) && (
+  <span className="artist-track-duration">
+    {isPlaying ? formatTime(currentTime) : track.duration}
+  </span>
+)}
                       </div>
 
                       {isPlaying && (
@@ -267,24 +304,17 @@ function ArtistModal({ artist, onClose }) {
 
                       {isSelected && hasExternalPlayer && (
                         <div className="artist-external-player">
-                          <div className="artist-external-player-header">
-                            <span>ЯНДЕКС МУЗЫКА</span>
-                            <a
-                              href={track.platforms.yandexMusic.url}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              Открыть в Яндекс Музыке ↗
-                            </a>
-                          </div>
-
-                          <iframe
-                            src={track.platforms.yandexMusic.iframeUrl}
-                            title={`${artist.name} — ${track.title}`}
-                            frameBorder="0"
-                            allow="clipboard-write; autoplay"
-                            loading="lazy"
-                          >
+<iframe
+  src={
+    isMobileViewport()
+      ? track.platforms.yandexMusic.iframeUrl
+      : `${track.platforms.yandexMusic.iframeUrl}${track.platforms.yandexMusic.iframeUrl.includes('?') ? '&' : '?'}autoplay=1`
+  }
+  title={`${artist.name} — ${track.title}`}
+  frameBorder="0"
+  allow={isMobileViewport() ? 'clipboard-write' : 'autoplay; clipboard-write'}
+  loading="lazy"
+>
                             Слушайте {track.title} — {artist.name} на Яндекс Музыке
                           </iframe>
                         </div>
@@ -325,9 +355,19 @@ function ArtistModal({ artist, onClose }) {
                     <span className="artist-modal-social-name">
                       {social.name || social.type}
                     </span>
-                    <span className="artist-modal-social-arrow">
-                      ↗
-                    </span>
+<svg
+  className="artist-modal-social-arrow"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  strokeWidth="2.4"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  aria-hidden="true"
+>
+  <line x1="7" y1="17" x2="17" y2="7" />
+  <polyline points="8 7 17 7 17 16" />
+</svg>
                   </a>
                 ))}
               </div>

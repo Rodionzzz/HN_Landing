@@ -26,7 +26,6 @@ export const artists = [
         id: 'beetlejuice',
         title: 'Beetlejuice',
         duration: '2:21',
-
         platforms: {
           yandexMusic: {
             url: 'https://music.yandex.ru/album/43173064/track/153907608',
@@ -38,7 +37,6 @@ export const artists = [
         id: 'gloom_serenade',
         title: 'Gloom Serenade',
         duration: '2:51',
-
         platforms: {
           yandexMusic: {
             url: 'https://music.yandex.ru/album/38872580/track/144462342',
@@ -52,9 +50,9 @@ export const artists = [
   {
     id: 'electrozombie',
     name: 'ЭЛЕКТРОЗОМБИ',
-    genre: 'Панк-рок',
+    genre: 'Punk-rock / Horror-punk / Glam-punk',
     description:
-      '«ЭЛЕКТРОЗОМБИ» — идейная и неутомимая панк-рок формация, за плечами которой годы упорной работы, полноформатные альбомы, яркие релизы и обширная география концертов. В своем творчестве группа органично объединяет классические каноны русского панк-рока, социальный сарказм и колоритную хоррор-тематику. Их песни — это искренний протест, пропущенный через призму черного юмора, гротеска и сокрушительного живого напора.',
+      '«ЭЛЕКТРОЗОМБИ» — самая отбитая панк-группа России. В наших песнях смешались хоррор-панк, турборок на предельной скорости и хардкор с шизофреническим прищуром. Музыка вроде бы простая, а слова — с подвывертом; энергия — как удар током. Темы скачут от дружбы и любви до налётов инопланетных мутантов и зомби-бунтов. Мир — тот же, но увиденный через стекло безумия.',
     image: '/images/artists/electro-zombi.jpg',
     cover: '/images/artists/electrozombie-cover.jpg',
     socials: [
@@ -68,7 +66,25 @@ export const artists = [
         type: 'yandex-music',
         name: 'Яндекс Музыка',
         url: 'https://music.yandex.ru/artist/1556549',
-        icon: '/icons/social/yandex-music.svg',
+        icon: '/icons/social/yandex-music.svg', // Ссылка на SVG: https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/yandexmusic.svg
+      },
+      {
+        type: 'telegram',
+        name: 'Telegram',
+        url: 'https://t.me/xoxa_xoi',
+        icon: '/icons/social/telegram.svg', // Ссылка на SVG: https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/telegram.svg
+      },
+      {
+        type: 'bandcamp',
+        name: 'Bandcamp',
+        url: 'https://electrozombi.bandcamp.com',
+        icon: '/icons/social/bandcamp.svg', // Ссылка на SVG: https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/bandcamp.svg
+      },
+      {
+        type: 'youtube',
+        name: 'YouTube',
+        url: 'https://www.youtube.com/@TV-ks1vg',
+        icon: '/icons/social/youtube.svg', // Ссылка на SVG: https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/youtube.svg
       }
     ],
     tracks: [
@@ -76,13 +92,23 @@ export const artists = [
         id: 'rasputin',
         title: 'Распутин',
         duration: '2:42',
-        audioUrl: '/audio/artists/electrozombie/Electrozombie - Rasputin.mp3',
+        platforms: {
+          yandexMusic: {
+            url: 'https://music.yandex.ru/album/11340238/track/68415760',
+            iframeUrl: 'https://music.yandex.ru/iframe/album/11340238/track/68415760',
+          },
+        },
       },
       {
         id: 'vrag-obshchestva',
         title: 'Враг общества',
         duration: '2:17',
-        audioUrl: '/audio/artists/electrozombie/Electrozombie - Vrag obshchestva.mp3',
+        platforms: {
+          yandexMusic: {
+            url: 'https://music.yandex.ru/album/11340213/track/68415687',
+            iframeUrl: 'https://music.yandex.ru/iframe/album/11340213/track/68415687',
+          },
+        },
       },
     ],
   },
@@ -114,13 +140,23 @@ export const artists = [
         id: 'baba-gaba',
         title: 'Баба Габа',
         duration: '3:52',
-        audioUrl: '/audio/artists/issin/ISSIN - Baba Gaba.mp3',
+        platforms: {
+          yandexMusic: {
+            url: 'https://music.yandex.ru/album/27626700/track/117939896',
+            iframeUrl: 'https://music.yandex.ru/iframe/album/27626700/track/117939896',
+          },
+        },
       },
       {
         id: 'muzika-i-tabletki',
         title: 'Музыка и таблетки',
         duration: '3:19',
-        audioUrl: 'https://music.yandex.ru/album/27626700/track/117939896',
+        platforms: {
+          yandexMusic: {
+            url: 'https://music.yandex.ru/album/34992049/track/135224120',
+            iframeUrl: 'https://music.yandex.ru/iframe/album/34992049/track/135224120',
+          },
+        },
       },
     ],
   },
@@ -128,7 +164,7 @@ export const artists = [
   {
     id: 'zherd',
     name: 'ЖЕРДЬ',
-    genre: 'Тяжёлый нойз-рок / Post-hardcore',
+genre: 'Noise-rock / Post-hardcore / Sludge',
     description:
       '«ЖЕРДЬ» — экстремальный музыкальный проект, балансирующий на стыке бескомпромиссного нойз-рока, пост-хардкора и авангардного шума. Их композиции представляют собой монолитную стену звука, где ломаные, рваные ритмические рисунки сталкиваются с агрессивными гитарными стенами и экспрессивной подачей. Это музыка не для фонового прослушивания, а настоящий звуковой катарсис, исследующий темные стороны человеческого подсознания через первобытную мощь дисторшна.',
     image: '/images/artists/jerd.jpg',
@@ -149,16 +185,26 @@ export const artists = [
     ],
     tracks: [
       {
-        id: 'zherd-track-1',
-        title: 'Трек 1',
-        duration: '3:10',
-        audioUrl: '/audio/artists/zherd/Zherd - Track 1.mp3',
+        id: 'vremya-sozhalet',
+        title: 'Время сожалеть',
+        duration: '2:31',
+        platforms: {
+          yandexMusic: {
+            url: 'https://music.yandex.ru/album/40392055/track/147602712',
+            iframeUrl: 'https://music.yandex.ru/iframe/album/40392055/track/147602712',
+          },
+        },
       },
       {
-        id: 'zherd-track-2',
-        title: 'Трек 2',
-        duration: '2:45',
-        audioUrl: '/audio/artists/zherd/Zherd - Track 2.mp3',
+        id: 'kriki-na-vetru',
+        title: 'Крики на ветру',
+        duration: '3:45',
+        platforms: {
+          yandexMusic: {
+            url: 'https://music.yandex.ru/album/41316619/track/149631507',
+            iframeUrl: 'https://music.yandex.ru/iframe/album/41316619/track/149631507',
+          },
+        },
       },
     ],
   },
@@ -183,6 +229,12 @@ export const artists = [
         name: 'Яндекс Музыка',
         url: 'https://music.yandex.ru/artist/24472519',
         icon: '/icons/social/yandex-music.svg',
+      },
+      {
+        type: 'bandcamp',
+        name: 'Bandcamp',
+        url: 'https://methtripper.bandcamp.com',
+        icon: '/icons/social/bandcamp.svg',
       }
     ],
     tracks: [
@@ -190,13 +242,23 @@ export const artists = [
         id: 's41',
         title: 'S.41',
         duration: '4:34',
-        audioUrl: '/audio/artists/methtripper/MethTripper - S.41.mp3',
+        platforms: {
+          yandexMusic: {
+            url: 'https://music.yandex.ru/album/42735789/track/152277549',
+            iframeUrl: 'https://music.yandex.ru/iframe/album/42735789/track/152277549',
+          },
+        },
       },
       {
-        id: 'mass-psychosis',
-        title: 'Mass Psychosis Consequences',
-        duration: '3:20',
-        audioUrl: '/audio/artists/methtripper/MethTripper - Mass Psychosis Consequences.mp3',
+        id: 'selfmadegod',
+        title: 'SelfMadeGod',
+        duration: '3:09',
+        platforms: {
+          yandexMusic: {
+            url: 'https://music.yandex.ru/album/37462387/track/141112108',
+            iframeUrl: 'https://music.yandex.ru/iframe/album/37462387/track/141112108',
+          },
+        },
       },
     ],
   },
@@ -204,11 +266,11 @@ export const artists = [
   {
     id: 'the-sadness',
     name: 'The Sadness',
-    genre: 'Пост-панк / Инди',
+    genre: 'Criminal Post-pank',
     description:
       'The Sadness — ивановский пост-панк коллектив, мастерски воссоздающий атмосферу ночных неоновых проспектов, экзистенциальной тоски и романтики спальных районов. Музыка группы строится на характерных холодных басовых партиях, ретро-синтезаторах и пронзительной, глубокой лирике. Они умело балансируют на грани между меланхоличным погружением в себя и мощным танцевальным драйвом, из-за чего их треки одинаково близко отзываются как в тишине наушников, так и в клубах.',
     image: '/images/artists/sadness.jpg',
-    cover: '/images/artists/sadness-cover.jpg',
+    cover: '/images/artists/sadness-cover.png',
     socials: [
       {
         type: 'vk',
@@ -221,20 +283,37 @@ export const artists = [
         name: 'Яндекс Музыка',
         url: 'https://music.yandex.ru/artist/10601645',
         icon: '/icons/social/yandex-music.svg',
+      },
+      {
+        type: 'bandcamp',
+        name: 'Bandcamp',
+        url: 'https://thesadness.bandcamp.com',
+        icon: '/icons/social/bandcamp.svg',
       }
     ],
     tracks: [
+{
+  id: 'kraym',
+  title: 'Крайм',
+  duration: '2:59',
+  audioUrl: '/audio/artists/the-sadness/kraym.mp3',
+  platforms: {
+    yandexMusic: {
+      url: 'https://music.yandex.ru/album/41954525/track/151083775',
+      iframeUrl: 'https://music.yandex.ru/iframe/album/41954525/track/151083775',
+    },
+  },
+},
       {
-        id: 'pokolenie',
-        title: 'Поколение',
-        duration: '2:57',
-        audioUrl: '/audio/artists/the-sadness/The Sadness - Pokolenie.mp3',
-      },
-      {
-        id: 'ograda',
-        title: 'Ограда',
-        duration: '3:20',
-        audioUrl: '/audio/artists/the-sadness/The Sadness - Ograda.mp3',
+        id: 'mayak',
+        title: 'Маяк',
+        duration: '4:47',
+        platforms: {
+          yandexMusic: {
+            url: 'https://music.yandex.ru/album/42750671/track/152910962',
+            iframeUrl: 'https://music.yandex.ru/iframe/album/42750671/track/152910962',
+          },
+        },
       },
     ],
   },
@@ -242,10 +321,10 @@ export const artists = [
   {
     id: 'jesha',
     name: 'Jesha',
-    genre: 'Метал рок',
-    description: 'Описание jesha',
+    genre: 'Metal/Rock',
+    description: 'Jesha — ивановский музыкальный коллектив с мелодичной подачей и ярким, эмоциональным звучанием. Группа выступала на ивановском фестивале «Рок-лига», а среди её релизов — «Красивые сны» и «Нервы». В музыке Jesha сочетаются запоминающиеся мелодии, современная поп-звучность и роковый сценический характер.',
     image: '/images/artists/jesha.jpg',
-    cover: '',
+    cover: '/images/artists/jesha-cover.jpg',
     socials: [
       {
         type: 'yandex-music',
@@ -253,6 +332,30 @@ export const artists = [
         url: 'https://music.yandex.ru/artist/11014122',
         icon: '/icons/social/yandex-music.svg',
       }
+    ],
+    tracks: [
+      {
+        id: 'krasivye-sny',
+        title: 'Красивые сны',
+        duration: '3:09',
+        platforms: {
+          yandexMusic: {
+            url: 'https://music.yandex.ru/album/17921681/track/90576406',
+            iframeUrl: 'https://music.yandex.ru/iframe/album/17921681/track/90576406',
+          },
+        },
+      },
+      {
+        id: 'nervy',
+        title: 'Нервы',
+        duration: '3:25',
+        platforms: {
+          yandexMusic: {
+            url: 'https://music.yandex.ru/album/14193403/track/78792532',
+            iframeUrl: 'https://music.yandex.ru/iframe/album/14193403/track/78792532',
+          },
+        },
+      },
     ],
   }
 ];

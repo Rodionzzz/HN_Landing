@@ -3434,18 +3434,38 @@ a {
 
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
-  background:
-    radial-gradient(circle at center, #0c0b0a 0 34%, transparent 35% 100%),
-    repeating-radial-gradient(circle at center, rgba(255, 255, 255, 0.07) 0 2px, transparent 2px 5px),
-    #17140f;
+  overflow: hidden;
+
   backdrop-filter: blur(4px);
 
+  appearance: none;
+  -webkit-appearance: none;
+
+  background: transparent;
   color: #ff5730;
   font-size: 10px;
+  font-family: inherit;
 
   cursor: pointer;
 
   transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.artist-track-play-btn::before {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(circle at center, #0c0b0a 0 34%, transparent 35% 100%),
+    repeating-radial-gradient(circle at center, rgba(255, 255, 255, 0.07) 0 2px, transparent 2px 5px),
+    #17140f;
+}
+
+.artist-track-play-icon {
+  position: relative;
+  z-index: 1;
 }
 
 .artist-track-play-btn:hover {
@@ -3462,7 +3482,9 @@ a {
   color: #fff;
 
   box-shadow: 0 0 16px rgba(255, 75, 30, 0.55);
+}
 
+.artist-track.is-active .artist-track-play-btn::before {
   animation: artist-track-vinyl-spin 2.8s linear infinite;
 }
 
@@ -3673,7 +3695,11 @@ a {
   }
 
   .artist-modal-header {
-    min-height: 340px;
+    min-height: 480px;
+  }
+
+  .artist-modal-cover {
+    background-position: center top;
   }
 
   .artist-modal-title-block {

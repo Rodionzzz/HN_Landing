@@ -55,7 +55,7 @@ export const artists = [
     name: 'ЭЛЕКТРОЗОМБИ',
     genre: 'Punk-rock / Horror-punk / Glam-punk',
     description:
-      '«ЭЛЕКТРОЗОМБИ» — самая отбитая панк-группа России. В наших песнях смешались хоррор-панк, турборок на предельной скорости и хардкор с шизофреническим прищуром. Музыка вроде бы простая, а слова — с подвывертом; энергия — как удар током. Темы скачут от дружбы и любви до налётов инопланетных мутантов и зомби-бунтов. Мир — тот же, но увиденный через стекло безумия.',
+      'Электрозомби - петербургская хоррор-панк группа, основанная в 2011 году, впервые в истории приезжает в Иваново. В программе шоу: лучшие хиты со всех альбомов, байки из ленинградских склепов, весёлые шутки и мерч. Будем рады всех видеть на концерте, а кто не придёт, того сцапает Распутин!',
     image: asset('/images/artists/electro-zombi.jpg'),
     cover: asset('/images/artists/electrozombie-cover.jpg'),
     socials: [
@@ -78,16 +78,16 @@ export const artists = [
         icon: asset('/icons/social/telegram.svg'),
       },
       {
-        type: 'bandcamp',
-        name: 'Bandcamp',
-        url: 'https://electrozombi.bandcamp.com',
-        icon: asset('/icons/social/bandcamp.svg'),
-      },
-      {
         type: 'youtube',
         name: 'YouTube',
         url: 'https://www.youtube.com/@TV-ks1vg',
         icon: asset('/icons/social/youtube.svg'),
+      },
+      {
+        type: 'bandcamp',
+        name: 'Bandcamp',
+        url: 'https://electrozombi.bandcamp.com',
+        icon: asset('/icons/social/bandcamp.svg'),
       }
     ],
     tracks: [
@@ -239,6 +239,30 @@ export const artists = [
         icon: asset('/icons/social/yandex-music.svg'),
       },
       {
+        type: 'telegram',
+        name: 'Telegram',
+        url: 'https://www.youtube.com/@methtripperofficial',
+        icon: asset('/icons/social/telegram.svg'),
+      },
+      {
+        type: 'youtube',
+        name: 'YouTube',
+        url: 'tg://resolve?domain=methtripper',
+        icon: asset('/icons/social/youtube.svg'),
+      },
+      {
+        type: 'instagram',
+        name: 'Instagram',
+        url: 'https://instagram.com/methtripper/',
+        icon: asset('/icons/social/instagram.svg'),
+      },
+      {
+        type: 'spotify',
+        name: 'Spotify',
+        url: 'https://open.spotify.com/artist/4vTt9XcxOamyjGQhbIJlBh?si=Ji6PMT1TTjugDS2H2wX-HA',
+        icon: asset('/icons/social/spotify.svg'),
+      },
+      {
         type: 'bandcamp',
         name: 'Bandcamp',
         url: 'https://methtripper.bandcamp.com',
@@ -278,7 +302,7 @@ export const artists = [
     name: 'The Sadness',
     genre: 'Criminal Post-pank',
     description:
-      'The Sadness — ивановский пост-панк коллектив, мастерски воссоздающий атмосферу ночных неоновых проспектов, экзистенциальной тоски и романтики спальных районов. Музыка группы строится на характерных холодных басовых партиях, ретро-синтезаторах и пронзительной, глубокой лирике. Они умело балансируют на грани между меланхоличным погружением в себя и мощным танцевальным драйвом, из-за чего их треки одинаково близко отзываются как в тишине наушников, так и в клубах.',
+      'The Sadness - размотанная аудио-пленка из магнитофона твоего старшего брата, растянутая по пустынным дворам, глухим пустырям — эхом прокуренных подъездов. Мальчик, который пошел попить и не вернулся, разбросанные сердечники трансформатора и конфеты, подобранные с могил на праздник.',
     image: asset('/images/artists/sadness.jpg'),
     cover: asset('/images/artists/sadness-cover.png'),
     socials: [
@@ -333,7 +357,7 @@ export const artists = [
     id: 'jesha',
     name: 'Jesha',
     genre: 'Metal/Rock',
-    description: 'Jesha — ивановский музыкальный коллектив с мелодичной подачей и ярким, эмоциональным звучанием. Группа выступала на ивановском фестивале «Рок-лига», а среди её релизов — «Красивые сны» и «Нервы». В музыке Jesha сочетаются запоминающиеся мелодии, современная поп-звучность и роковый сценический характер.',
+    description: 'Jesha — ивановский рок метал проект с почерком, который цепляет с первых нот: мелодичный вокал, современное продюсирование и щепотка сценической дерзости. С 2023 года группа выпустила уже четыре сингла — «Виражи», «Холодное Небо», «Нервы» и «Дожди». Каждый трек — как отдельная эмоция, которую хочется прожить на максимальной громкости.',
     image: asset('/images/artists/jesha.jpg'),
     cover: asset('/images/artists/jesha-cover.jpg'),
     socials: [
@@ -342,6 +366,18 @@ export const artists = [
         name: 'Яндекс Музыка',
         url: 'https://music.yandex.ru/artist/11014122',
         icon: asset('/icons/social/yandex-music.svg'),
+      },
+      {
+        type: 'tictok',
+        name: 'TicTok',
+        url: 'http://www.tiktok.com/@jeshamusic',
+        icon: asset('/icons/social/tiktok.svg'),
+      },
+      {
+        type: 'instagram',
+        name: 'Instagram',
+        url: 'https://www.instagram.com/jeshamusic37?stkn=MXI1aW0wNGt3cWtzbA%3D%3D&utm_source=qr',
+        icon: asset('/icons/social/instagram.svg'),
       }
     ],
     tracks: [

@@ -352,22 +352,6 @@ const handleEnded = () => {
                         className="artist-modal-social-icon"
                       />
                     )}
-                    <span className="artist-modal-social-name">
-                      {social.name || social.type}
-                    </span>
-<svg
-  className="artist-modal-social-arrow"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  strokeWidth="2.4"
-  strokeLinecap="round"
-  strokeLinejoin="round"
-  aria-hidden="true"
->
-  <line x1="7" y1="17" x2="17" y2="7" />
-  <polyline points="8 7 17 7 17 16" />
-</svg>
                   </a>
                 ))}
               </div>

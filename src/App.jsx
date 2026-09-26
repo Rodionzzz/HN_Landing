@@ -64,6 +64,27 @@ function App() {
   return (
     <>
       <div className="site">
+        <div className="fx-ambience" aria-hidden="true">
+          <div className="fx-glow fx-glow-left" />
+          <div className="fx-glow fx-glow-right" />
+
+          <div className="fx-embers">
+            <span className="fx-ember" style={{ left: '1.5%', animationDelay: '0s', animationDuration: '7s' }} />
+            <span className="fx-ember" style={{ left: '3%', animationDelay: '2.2s', animationDuration: '9s' }} />
+            <span className="fx-ember" style={{ left: '0.5%', animationDelay: '4.5s', animationDuration: '6.5s' }} />
+            <span className="fx-ember" style={{ left: '4.5%', animationDelay: '1.2s', animationDuration: '8s' }} />
+            <span className="fx-ember" style={{ left: '2.2%', animationDelay: '5.5s', animationDuration: '7.5s' }} />
+            <span className="fx-ember" style={{ left: '5.5%', animationDelay: '3.3s', animationDuration: '6s' }} />
+
+            <span className="fx-ember" style={{ right: '1.5%', animationDelay: '1s', animationDuration: '7.5s' }} />
+            <span className="fx-ember" style={{ right: '3%', animationDelay: '3.5s', animationDuration: '6.5s' }} />
+            <span className="fx-ember" style={{ right: '0.5%', animationDelay: '5.2s', animationDuration: '9s' }} />
+            <span className="fx-ember" style={{ right: '4.5%', animationDelay: '0.5s', animationDuration: '7s' }} />
+            <span className="fx-ember" style={{ right: '2.2%', animationDelay: '4s', animationDuration: '8.5s' }} />
+            <span className="fx-ember" style={{ right: '5.5%', animationDelay: '2.6s', animationDuration: '6s' }} />
+          </div>
+        </div>
+
         <Header onTicketClick={openTickets} />
 
         <main>

@@ -15,6 +15,7 @@ export const events = [
       'zherd',
       'electrozombie',
       'the-sadness',
+      'jesha'
     ],
 
     photos: [],

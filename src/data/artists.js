@@ -47,8 +47,7 @@ export const artists = [
         },
       },
     ],
-  }, // <-- Вот здесь не хватало закрывающей скобки объекта и запятой
-
+  },
   {
     id: 'electrozombie',
     name: 'ЭЛЕКТРОЗОМБИ',
@@ -115,7 +114,7 @@ export const artists = [
         },
       },
     ],
-  }, // <-- И здесь
+  },
 
   {
     id: 'issin',
@@ -165,8 +164,7 @@ export const artists = [
         },
       },
     ],
-  }, // <-- И здесь
-
+  },
   {
     id: 'zherd',
     name: 'ЖЕРДЬ',
@@ -215,7 +213,7 @@ export const artists = [
         },
       },
     ],
-  }, // <-- И здесь
+  },
 
   {
     id: 'methtripper',
@@ -271,7 +269,7 @@ export const artists = [
         },
       },
     ],
-  }, // <-- И здесь
+  },
 
   {
     id: 'the-sadness',

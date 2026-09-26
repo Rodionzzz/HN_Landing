@@ -1,16 +1,22 @@
 function Header({ onTicketClick }) {
   return (
     <header className="header">
-      <a href="#top" className="logo" aria-label="Halloween Night">
-        <span>Halloween</span>
-        <span>Night</span>
+      <a href="#top" className="logo" aria-label="Halloween 🎃 Night">
+        <span className="logo-word logo-word-top">Halloween</span>
+
+        <span className="logo-pumpkin" aria-hidden="true">
+          🎃
+        </span>
+
+        <span className="logo-word logo-word-bottom">Night</span>
       </a>
 
       <nav className="nav">
         <a href="#about">О мероприятии</a>
         <a href="#artists">Группы</a>
+        <a href="#schedule">Расписание</a>
         <a href="#photos">Фото</a>
-        <a href="#music">Музыка</a>
+        <a href="#location">Локация</a>
         <a href="#tickets">Билеты</a>
       </nav>
 

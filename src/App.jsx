@@ -8,6 +8,9 @@ import ArtistCard from './components/ArtistCard/ArtistCard'
 import ArtistModal from './components/ArtistModal/ArtistModal'
 import Footer from './components/Footer/Footer'
 import TicketModal from './components/TicketModal/TicketModal'
+import Location from './components/Location/Location'
+import Schedule from './components/Schedule/Schedule'
+import PhotoCarousel from './components/PhotoCarousel/PhotoCarousel'
 
 import { artists } from './data/artists'
 
@@ -139,27 +142,15 @@ function App() {
             </div>
           </section>
 
-          {/* PHOTOS */}
-          <section className="section photos" id="photos">
-            <div className="section-label"></div>
+{/* SCHEDULE */}
+<Schedule />
 
-            <h2>ФОТО</h2>
+{/* PHOTOS */}
+<PhotoCarousel />
 
-            <div className="photo-placeholder">
-              <span>PHOTO ARCHIVE</span>
-            </div>
-          </section>
-
-          {/* MUSIC */}
-          <section className="section music" id="music">
-            <div className="section-label"></div>
-
-            <h2>МУЗЫКА</h2>
-
-            <div className="music-placeholder">
-              <span>LISTEN TO THE BANDS</span>
-            </div>
-          </section>
+          {/* Locatio */}
+<Location
+/>
 
           {/* TICKETS */}
           <section className="section tickets" id="tickets">

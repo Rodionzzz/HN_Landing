@@ -9,7 +9,7 @@ export default defineConfig(({ command }) => ({
   // всё работает как раньше, картинки не пропадают.
   // При сборке (npm run build, в том числе в GitHub Actions)
   // base становится '/HN_Landing/' — так нужно для GitHub Pages,
-  // пока не подключён свой домен. Когда подключишь домен —
+  // пока не подключён свой домен. Когда есть домен —
   // поменяй '/HN_Landing/' на '/'.
-  base: command === 'build' ? '/HN_Landing/' : '/',
-}))
+  base: '/',
+})

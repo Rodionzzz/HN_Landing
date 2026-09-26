@@ -1,7 +1,12 @@
-import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+
+  // Название репозитория Rodionzzz/HN_Landing —
+  // поэтому base должен совпадать с именем репо.
+  // Когда подключишь свой домен и сайт будет открываться
+  // с корня — поменяй это значение на '/'.
+  base: '/HN_Landing/',
 })

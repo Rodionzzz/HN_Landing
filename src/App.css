@@ -4663,14 +4663,23 @@ a {
 /* HEADER */
 
 .photo-carousel-heading {
+  position: relative;
+
   display: flex;
+  flex-direction: column;
 
-  align-items: flex-end;
-  justify-content: space-between;
+  align-items: center;
+  text-align: center;
 
-  gap: 30px;
+  gap: 10px;
 
   margin-bottom: 45px;
+}
+
+.photo-carousel-all {
+  position: absolute;
+  right: 0;
+  bottom: 6px;
 }
 
 .photo-carousel-heading span {
@@ -4741,6 +4750,67 @@ a {
 
 .photo-carousel-all:focus {
   outline: none;
+}
+
+
+/* YEAR TABS */
+
+.photo-year-tabs {
+  display: flex;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-bottom: 35px;
+}
+
+.photo-year-tab {
+  position: relative;
+
+  padding: 8px 22px;
+
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-family: inherit;
+  font-size: 13px;
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease,
+    background 0.25s ease;
+}
+
+.photo-year-tab:hover:not(.photo-year-tab-locked),
+.photo-year-tab.photo-year-tab-active {
+  border-color: var(--orange);
+  color: #FFF4E6;
+}
+
+.photo-year-tab.photo-year-tab-active {
+  background: rgba(228, 91, 32, 0.12);
+}
+
+.photo-year-tab.photo-year-tab-locked {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.photo-year-tab-soon {
+  display: block;
+
+  margin-top: 2px;
+
+  color: var(--orange);
+
+  font-size: 8px;
+  letter-spacing: 2px;
 }
 
 
@@ -5050,9 +5120,12 @@ a {
   }
 
   .photo-carousel-heading {
-    align-items: flex-start;
+    align-items: center;
+  }
 
-    flex-direction: column;
+  .photo-carousel-all {
+    position: static;
+    margin-top: 16px;
   }
 
   .photo-carousel-stage {

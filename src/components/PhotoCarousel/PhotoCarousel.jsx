@@ -1,8 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { photos } from '../../data/photos'
 
 const AUTOPLAY_INTERVAL = 5000
 const SWIPE_THRESHOLD = 50
+
+// Дата мероприятия vol.2 — пока не наступит, год без фото считается
+// "запертым" в переключателе годов и подписывается "СКОРО".
+const EVENT_DATE = new Date('2026-10-31T23:59:59')
 
 // Свайп мышью/тачем: даёт живой drag-эффект (как перелистывание
 // обложек в Apple Music) и сообщает, было ли движение свайпом,
@@ -84,12 +88,42 @@ function useSwipeNav({ onSwipeLeft, onSwipeRight, disabled = false }) {
 }
 
 function PhotoCarousel() {
+  // Все года, встречающиеся в данных, плюс "следующий" год мероприятия —
+  // так вкладка "2026" видна заранее, даже пока в data/photos.js для неё
+  // нет ни одной фотографии.
+  const years = useMemo(() => {
+    const fromData = photos.map((photo) => photo.year).filter(Boolean)
+    const nextYear = EVENT_DATE.getFullYear()
+
+    return [...new Set([...fromData, nextYear])].sort((a, b) => a - b)
+  }, [])
+
+  const isYearLocked = (year) => {
+    const hasPhotos = photos.some((photo) => photo.year === year)
+    return !hasPhotos && new Date() < EVENT_DATE
+  }
+
+  const defaultYear =
+    [...years].reverse().find((year) => !isYearLocked(year)) ?? years[0]
+
+  const [selectedYear, setSelectedYear] = useState(defaultYear)
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
   const [isArchiveOpen, setIsArchiveOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(null)
 
-  const total = photos.length
+  const yearPhotos = useMemo(
+    () => photos.filter((photo) => photo.year === selectedYear),
+    [selectedYear]
+  )
+
+  const total = yearPhotos.length
+
+  // Год сменили — сбрасываем позицию, иначе индекс может указывать
+  // за пределы нового, более короткого списка фото.
+  useEffect(() => {
+    setCurrentIndex(0)
+    setLightboxIndex(null)
+  }, [selectedYear])
 
   const previousIndex = total
     ? (currentIndex - 1 + total) % total
@@ -133,7 +167,7 @@ function PhotoCarousel() {
 
   // Автолистание карусели
   useEffect(() => {
-    if (!total || total < 2 || isPaused || isArchiveOpen || lightboxIndex !== null) {
+    if (!total || total < 2 || isArchiveOpen || lightboxIndex !== null) {
       return
     }
 
@@ -142,7 +176,7 @@ function PhotoCarousel() {
     }, AUTOPLAY_INTERVAL)
 
     return () => clearInterval(timer)
-  }, [total, isPaused, isArchiveOpen, lightboxIndex])
+  }, [total, isArchiveOpen, lightboxIndex])
 
   // Esc закрывает верхний открытый слой, стрелки листают фото в лайтбоксе
   useEffect(() => {
@@ -195,6 +229,39 @@ function PhotoCarousel() {
     setLightboxIndex(null)
   }
 
+  const selectYear = (year) => {
+    if (isYearLocked(year)) return
+    setSelectedYear(year)
+  }
+
+  const yearTabs = years.length > 1 && (
+    <div className="photo-year-tabs">
+      {years.map((year) => {
+        const locked = isYearLocked(year)
+
+        return (
+          <button
+            key={year}
+            type="button"
+            className={[
+              'photo-year-tab',
+              year === selectedYear && 'photo-year-tab-active',
+              locked && 'photo-year-tab-locked',
+            ]
+              .filter(Boolean)
+              .join(' ')}
+            onClick={() => selectYear(year)}
+            disabled={locked}
+            aria-pressed={year === selectedYear}
+          >
+            {year}
+            {locked && <span className="photo-year-tab-soon">СКОРО</span>}
+          </button>
+        )
+      })}
+    </div>
+  )
+
   if (!total) {
     return (
       <section className="photo-carousel-section" id="photos">
@@ -204,6 +271,8 @@ function PhotoCarousel() {
             <h2>ФОТО</h2>
           </div>
         </div>
+
+        {yearTabs}
 
         <div className="photo-carousel-empty">
           <div className="photo-carousel-empty-icon">
@@ -216,18 +285,16 @@ function PhotoCarousel() {
     )
   }
 
-  const previousPhoto = photos[previousIndex]
-  const currentPhoto = photos[currentIndex]
-  const nextPhoto = photos[nextIndex]
+  const previousPhoto = yearPhotos[previousIndex]
+  const currentPhoto = yearPhotos[currentIndex]
+  const nextPhoto = yearPhotos[nextIndex]
 
-  const lightboxPhoto = lightboxIndex !== null ? photos[lightboxIndex] : null
+  const lightboxPhoto = lightboxIndex !== null ? yearPhotos[lightboxIndex] : null
 
   return (
     <section
       className="photo-carousel-section"
       id="photos"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
     >
       <div className="photo-carousel-heading">
         <div>
@@ -244,6 +311,8 @@ function PhotoCarousel() {
           <span>↗</span>
         </button>
       </div>
+
+      {yearTabs}
 
       <div className="photo-carousel">
 
@@ -267,9 +336,11 @@ function PhotoCarousel() {
 
           <div className="photo-carousel-side photo-carousel-side-left">
             <img
-              src={previousPhoto.src}
+              src={previousPhoto.thumb || previousPhoto.src}
               alt={previousPhoto.alt}
               draggable={false}
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -295,6 +366,9 @@ function PhotoCarousel() {
               src={currentPhoto.src}
               alt={currentPhoto.alt}
               draggable={false}
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
             />
 
             <div className="photo-carousel-overlay" />
@@ -309,9 +383,11 @@ function PhotoCarousel() {
 
           <div className="photo-carousel-side photo-carousel-side-right">
             <img
-              src={nextPhoto.src}
+              src={nextPhoto.thumb || nextPhoto.src}
               alt={nextPhoto.alt}
               draggable={false}
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -346,10 +422,10 @@ function PhotoCarousel() {
               ✕
             </button>
 
-            <h3 className="photo-archive-title">Весь архив</h3>
+            <h3 className="photo-archive-title">Весь архив {selectedYear}</h3>
 
             <div className="photo-archive-grid">
-              {photos.map((photo, index) => (
+              {yearPhotos.map((photo, index) => (
                 <button
                   key={photo.id}
                   type="button"
@@ -357,9 +433,11 @@ function PhotoCarousel() {
                   onClick={() => openLightbox(index)}
                 >
                   <img
-                    src={photo.src}
+                    src={photo.thumb || photo.src}
                     alt={photo.alt}
                     draggable={false}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </button>
               ))}
@@ -393,6 +471,7 @@ function PhotoCarousel() {
               src={lightboxPhoto.src}
               alt={lightboxPhoto.alt}
               draggable={false}
+              decoding="async"
               style={{
                 transform: `translateX(${lightboxSwipe.dragX}px)`,
                 transition: lightboxSwipe.isAnimating ? 'transform 0.35s ease' : 'none',

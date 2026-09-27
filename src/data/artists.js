@@ -305,26 +305,50 @@ export const artists = [
       'The Sadness - размотанная аудио-пленка из магнитофона твоего старшего брата, растянутая по пустынным дворам, глухим пустырям — эхом прокуренных подъездов. Мальчик, который пошел попить и не вернулся, разбросанные сердечники трансформатора и конфеты, подобранные с могил на праздник.',
     image: asset('/images/artists/sadness.jpg'),
     cover: asset('/images/artists/sadness-cover.png'),
-    socials: [
-      {
-        type: 'vk',
-        name: 'VK',
-        url: 'https://vk.ru/thesadness37band',
-        icon: asset('/icons/social/vk.svg'),
-      },
-      {
-        type: 'yandex-music',
-        name: 'Яндекс Музыка',
-        url: 'https://music.yandex.ru/artist/10601645',
-        icon: asset('/icons/social/yandex-music.svg'),
-      },
-      {
-        type: 'bandcamp',
-        name: 'Bandcamp',
-        url: 'https://thesadness.bandcamp.com',
-        icon: asset('/icons/social/bandcamp.svg'),
-      }
-    ],
+socials: [
+  {
+    type: 'vk',
+    name: 'VK',
+    url: 'https://vk.com/thesadness37band',
+    icon: asset('/icons/social/vk.svg'),
+  },
+  {
+    type: 'youtube',
+    name: 'YouTube',
+    url: 'https://www.youtube.com/@%D0%90%D0%BD%D1%82%D0%BE%D1%85%D0%B0%D0%97%D0%B0%D0%B1%D0%B5%D0%BB%D0%B8%D0%BD',
+    icon: asset('/icons/social/youtube.svg'),
+  },
+  {
+    type: 'yandex-music',
+    name: 'Яндекс Музыка',
+    url: 'https://music.yandex.ru/artist/10601645',
+    icon: asset('/icons/social/yandex-music.svg'),
+  },
+  {
+    type: 'instagram',
+    name: 'Instagram',
+    url: 'https://instagram.com/thesadnessband?igshid=ZGUzMzM3NWJiOQ==',
+    icon: asset('/icons/social/instagram.svg'),
+  },
+  {
+    type: 'tiktok',
+    name: 'TikTok',
+    url: 'https://www.tiktok.com/@thesadnessband?lang=ru-RU',
+    icon: asset('/icons/social/tiktok.svg'),
+  },
+  {
+    type: 'telegram',
+    name: 'Telegram',
+    url: 'https://t.me/thesadnessband',
+    icon: asset('/icons/social/telegram.svg'),
+  },
+  {
+    type: 'bandcamp',
+    name: 'Bandcamp',
+    url: 'https://thesadness.bandcamp.com',
+    icon: asset('/icons/social/bandcamp.svg'),
+  }
+],
     tracks: [
       {
         id: 'kraym',
@@ -356,8 +380,8 @@ export const artists = [
   {
     id: 'jesha',
     name: 'Jesha',
-    genre: 'Metal/Rock',
-    description: 'Jesha — ивановский рок метал проект с почерком, который цепляет с первых нот: мелодичный вокал, современное продюсирование и щепотка сценической дерзости. С 2023 года группа выпустила уже четыре сингла — «Виражи», «Холодное Небо», «Нервы» и «Дожди». Каждый трек — как отдельная эмоция, которую хочется прожить на максимальной громкости.',
+    genre: 'Metal',
+    description: 'JESHA — ивановская метал группа с почерком, которая цепляет с первых нот: мелодичный вокал, современное продюсирование и щепотка сценической дерзости. Каждый трек — как отдельная эмоция, которую хочется прожить на максимальной громкости.',
     image: asset('/images/artists/jesha.jpg'),
     cover: asset('/images/artists/jesha-cover.jpg'),
     socials: [
@@ -378,6 +402,12 @@ export const artists = [
         name: 'Instagram',
         url: 'https://www.instagram.com/jeshamusic37?stkn=MXI1aW0wNGt3cWtzbA%3D%3D&utm_source=qr',
         icon: asset('/icons/social/instagram.svg'),
+      },
+      {
+        type: 'youtube',
+        name: 'YouTube',
+        url: 'ttps://youtube.com/@jesha-music?si=3XR-kCps8eJmFbbv',
+        icon: asset('/icons/social/youtube.svg'),
       }
     ],
     tracks: [

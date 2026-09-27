@@ -1,15 +1,17 @@
 function Header({ onTicketClick }) {
   return (
     <header className="header">
-      <a href="#top" className="logo" aria-label="Halloween 🎃 Night">
-        <span className="logo-word logo-word-top">Halloween</span>
+      <h1 style={{ margin: 0, fontSize: 'inherit', fontWeight: 'inherit', lineHeight: 'inherit' }}>
+        <a href="#top" className="logo" aria-label="Halloween 🎃 Night">
+          <span className="logo-word logo-word-top">Halloween</span>
 
-        <span className="logo-pumpkin" aria-hidden="true">
-          🎃
-        </span>
+          <span className="logo-pumpkin" aria-hidden="true">
+            🎃
+          </span>
 
-        <span className="logo-word logo-word-bottom">Night</span>
-      </a>
+          <span className="logo-word logo-word-bottom">Night</span>
+        </a>
+      </h1>
 
       <nav className="nav">
         <a href="#about">О мероприятии</a>

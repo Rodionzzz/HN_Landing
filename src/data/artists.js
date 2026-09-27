@@ -4,7 +4,7 @@ export const artists = [
   {
     id: 'rockin-bones',
     name: "Rockin' Bones",
-    genre: 'Horror-punk / Punk-rock',
+    genre: 'Punk-rock / Horror-punk',
     description:
       "Rockin' Bones — это дух Хэллоуина, пойманный в ловушку гитарных усилителей.🎸Это жуткое, бесконечно заразительное празднование тьмы, где низкий, мрачный женский вокал проведёт вас через самую весёлую и страшную ночь в вашей жизни.🌕 Так что…👻 Заходи в наш полуночный склеп — если осмелишься.",
     image: asset('/images/artists/rockin-bones.jpg'),

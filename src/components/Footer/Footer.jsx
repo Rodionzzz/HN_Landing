@@ -1,7 +1,15 @@
 function Footer() {
   return (
     <footer className="footer">
-      <div>HALLOWEEN NIGHT VOL.2</div>
+      <div>
+        <a
+          href="https://vk.ru/halloween_night_37"
+          target="_blank"
+          rel="noreferrer"
+        >
+          HALLOWEEN NIGHT VOL.2
+        </a>
+      </div>
 
       <div className="footer-credit">
         Power by:{' '}

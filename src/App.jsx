@@ -181,7 +181,7 @@ function App() {
             <div className="tickets-content">
               <h2>
                 УВИДИМСЯ
-                <span> В НОЧИ.</span>
+                <span className="night-flicker"> В НОЧИ.</span>
               </h2>
 
               <p>31 октября · 17:00</p>

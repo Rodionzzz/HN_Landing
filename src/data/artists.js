@@ -187,6 +187,18 @@ export const artists = [
         name: 'Яндекс Музыка',
         url: 'https://music.yandex.ru/artist/16755857',
         icon: asset('/icons/social/yandex-music.svg'),
+      },
+      {
+        type: 'instagram',
+        name: 'Instagram',
+        url: 'https://www.instagram.com/wearezherd',
+        icon: asset('/icons/social/instagram.svg'),
+      },
+      {
+        type: 'bandcamp',
+        name: 'Bandcamp',
+        url: 'https://wearezherd.bandcamp.com/',
+        icon: asset('/icons/social/bandcamp.svg'),
       }
     ],
     tracks: [

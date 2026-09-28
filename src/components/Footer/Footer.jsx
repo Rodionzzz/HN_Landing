@@ -1,3 +1,29 @@
+import { useState } from 'react'
+
+const VK_HOST = /(^|\.)(vk\.com|vk\.ru|vk\.me)$/
+
+// Пришёл ли человек из ВК: по ?from=vk в ссылке или по referrer.
+// Результат запоминаем, чтобы он не терялся при переходах по #якорям.
+function detectCameFromVk() {
+  try {
+    if (sessionStorage.getItem('cameFromVk') === '1') return true
+
+    const fromParam =
+      new URLSearchParams(window.location.search).get('from') === 'vk'
+
+    let fromReferrer = false
+    if (document.referrer) {
+      fromReferrer = VK_HOST.test(new URL(document.referrer).hostname)
+    }
+
+    const result = fromParam || fromReferrer
+    if (result) sessionStorage.setItem('cameFromVk', '1')
+    return result
+  } catch {
+    return false
+  }
+}
+
 const SOCIALS = [
   {
     id: 'vk',
@@ -15,6 +41,21 @@ const NAV = [
 ]
 
 function Footer() {
+  const [cameFromVk] = useState(detectCameFromVk)
+
+  // Гость пришёл из ВК → вместо второй вкладки пробуем закрыть эту.
+  // Если браузер не даёт закрыть — открываем ВК в этой же вкладке.
+  const handleSocialClick = (e, social) => {
+    if (social.id !== 'vk' || !cameFromVk) return
+
+    e.preventDefault()
+    window.close()
+
+    setTimeout(() => {
+      window.location.href = social.href
+    }, 200)
+  }
+
   return (
     <footer className="footer">
       <div className="footer-glowline" aria-hidden="true" />
@@ -51,12 +92,15 @@ function Footer() {
               key={s.id}
               className="footer-social"
               href={s.href}
-              target="_blank"
+              target={s.id === 'vk' && cameFromVk ? '_self' : '_blank'}
               rel="noreferrer"
               aria-label={s.label}
+              onClick={(e) => handleSocialClick(e, s)}
             >
               <span className="footer-social-icon">{s.short}</span>
-              <span className="footer-social-text">{s.label}</span>
+              <span className="footer-social-text">
+                {s.id === 'vk' && cameFromVk ? 'Вернуться в ВК' : s.label}
+              </span>
               <span className="footer-social-arrow">→</span>
             </a>
           ))}

@@ -138,6 +138,18 @@ export const artists = [
         name: 'Яндекс Музыка',
         url: 'https://music.yandex.ru/artist/7750746',
         icon: asset('/icons/social/yandex-music.svg'),
+      },
+      {
+        type: 'instagram',
+        name: 'Instagram',
+        url: 'https://www.instagram.com/issinband',
+        icon: asset('/icons/social/instagram.svg'),
+      },
+      {
+        type: 'youtube',
+        name: 'YouTube',
+        url: 'https://www.youtube.com/@issinband4997',
+        icon: asset('/icons/social/youtube.svg'),
       }
     ],
     tracks: [

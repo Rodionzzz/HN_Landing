@@ -172,7 +172,7 @@ export const artists = [
     name: 'ЖЕРДЬ',
     genre: 'Noise-rock / Post-hardcore / Sludge',
     description:
-      '«ЖЕРДЬ» — экстремальный музыкальный проект, балансирующий на стыке бескомпромиссного нойз-рока, пост-хардкора и авангардного шума. Их композиции представляют собой монолитную стену звука, где ломаные, рваные ритмические рисунки сталкиваются с агрессивными гитарными стенами и экспрессивной подачей. Это музыка не для фонового прослушивания, а настоящий звуковой катарсис, исследующий темные стороны человеческого подсознания через первобытную мощь дисторшна.',
+      'Жердь – российская нойз-рок-группа, основанная в 2020 году в Рязани. Музыка коллектива представляет собой симбиоз абразивных и тяжёлых направлений, включающий элементы олдскульного пост-хардкора и сладжа. Группа берет вдохновение из грязных риффов Unsane и ранних Melvins, шизоидного вайба The Jesus Lizard и атмосферы психоделического панка питерской Химеры.',
     image: asset('/images/artists/jerd.jpg'),
     cover: asset('/images/artists/jerd-cover.jpg'),
     socials: [
@@ -203,14 +203,14 @@ export const artists = [
     ],
     tracks: [
       {
-        id: 'vremya-sozhalet',
-        title: 'Время сожалеть',
-        duration: '2:31',
-        audioUrl: asset('/audio/artists/zherd/vremya-sozhalet.mp3'),
+        id: 'ivan-dyrak',
+        title: 'Иван-дурак',
+        duration: '3:22',
+        audioUrl: asset('/audio/artists/zherd/ivan-dyrak.mp3'),
         platforms: {
           yandexMusic: {
-            url: 'https://music.yandex.ru/album/40392055/track/147602712',
-            iframeUrl: 'https://music.yandex.ru/iframe/album/40392055/track/147602712',
+            url: 'https://music.yandex.ru/album/41316619/track/149631508',
+            iframeUrl: 'https://music.yandex.ru/iframe/album/41316619/track/149631508',
           },
         },
       },

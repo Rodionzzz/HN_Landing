@@ -56,7 +56,7 @@ export const artists = [
     genre: 'Punk-rock / Horror-punk / Glam-punk',
     description:
       'Электрозомби - петербургская хоррор-панк группа, основанная в 2011 году, впервые в истории приезжает в Иваново. В программе шоу: лучшие хиты со всех альбомов, байки из ленинградских склепов, весёлые шутки и мерч. Будем рады всех видеть на концерте, а кто не придёт, того сцапает Распутин!',
-    image: asset('/images/artists/electro-zombi.jpg'),
+    image: asset('/images/artists/electro-zombi-logo.jpg'),
     cover: asset('/images/artists/electrozombie-cover.jpg'),
     socials: [
       {
@@ -416,8 +416,8 @@ socials: [
         icon: asset('/icons/social/yandex-music.svg'),
       },
       {
-        type: 'tictok',
-        name: 'TicTok',
+        type: 'tiktok',
+        name: 'TikTok',
         url: 'http://www.tiktok.com/@jeshamusic',
         icon: asset('/icons/social/tiktok.svg'),
       },
@@ -430,7 +430,7 @@ socials: [
       {
         type: 'youtube',
         name: 'YouTube',
-        url: 'ttps://youtube.com/@jesha-music?si=3XR-kCps8eJmFbbv',
+        url: 'https://youtube.com/@jesha-music?si=3XR-kCps8eJmFbbv',
         icon: asset('/icons/social/youtube.svg'),
       }
     ],

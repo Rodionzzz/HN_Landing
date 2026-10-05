@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import './ArtistModal.css'
 
 function ArtistModal({ artist, onClose }) {
   const audioRef = useRef(null)
@@ -211,6 +212,14 @@ const handleEnded = () => {
                   backgroundImage: `url(${artist.cover})`,
                 }}
               >
+                {/* На мобилке фото показывается целиком через <img>,
+                    на десктопе — фоном (см. ArtistModal.css) */}
+                <img
+                  className="artist-modal-cover-img"
+                  src={artist.cover}
+                  alt=""
+                  aria-hidden="true"
+                />
                 <div className="artist-modal-cover-overlay" />
               </div>
             )}

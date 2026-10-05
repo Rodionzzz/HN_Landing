@@ -1,0 +1,69 @@
+/* =========================
+   ARTIST MODAL — MOBILE COVER
+   Основные стили модалки пока живут в App.css; здесь — только
+   мобильная обложка. Подключается из ArtistModal.jsx, поэтому
+   в сборке идёт после App.css и перекрывает его правила.
+
+   Обложки групп широкие (от 1.4:1 до 2.6:1), а шапка модалки
+   на телефоне почти квадратная — background-size: cover оставлял
+   от фото узкую полосу по центру. На мобильной ширине показываем
+   фото целиком через <img> в его родных пропорциях, а название
+   группы ставим под фото с небольшим наездом на затемнённый край.
+========================= */
+
+/* На десктопе <img> не нужен — там работает фон .artist-modal-cover */
+.artist-modal-cover-img {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .artist-modal-header {
+    min-height: 0;
+  }
+
+  .artist-modal-cover {
+    position: relative;
+    inset: auto;
+
+    /* фон перебивает inline-style из JSX — на мобилке фото рисует <img> */
+    background-image: none !important;
+
+    transform: none;
+  }
+
+  .artist-modal-window:hover .artist-modal-cover {
+    transform: none;
+  }
+
+  .artist-modal-cover-img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+  }
+
+  /* Затемняем только нижний край фото — под заголовок */
+  .artist-modal-cover-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) 55%,
+      rgba(5, 5, 5, 0.75) 85%,
+      rgba(5, 5, 5, 0.98) 100%
+    );
+  }
+
+  .artist-modal-title-block {
+    position: relative;
+    inset: auto;
+
+    margin-top: -30px;
+    padding: 0 22px 20px;
+  }
+
+  /* Без обложки заголовку не на что наезжать */
+  .artist-modal-title-block:first-child {
+    margin-top: 0;
+    padding-top: 64px; /* место под кнопку закрытия */
+  }
+}

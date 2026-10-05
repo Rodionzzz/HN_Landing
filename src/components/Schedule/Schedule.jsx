@@ -14,7 +14,7 @@ function Schedule() {
         </div>
 
         <div className="schedule-placeholder-title">
-          В ОФОРМЛЕНИЕ
+          В ОФОРМЛЕНИИ
         </div>
 
         <p>

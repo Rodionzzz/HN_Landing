@@ -214,14 +214,30 @@ const handleEnded = () => {
                   backgroundPosition: artist.coverPosition,
                 }}
               >
-                {/* На мобилке фото показывается целиком через <img>,
+                {/* На мобилке фото показывается целиком через <img> (coverMobile, если есть),
                     на десктопе — фоном (см. ArtistModal.css) */}
                 <img
                   className="artist-modal-cover-img"
-                  src={artist.cover}
+                  src={artist.coverMobile || artist.cover}
                   alt=""
                   aria-hidden="true"
                 />
+                {/* Туман по размытым краям — для растянутых вертикальных фото (coverFx) */}
+                {artist.coverFx && (
+                  <div className="artist-cover-fx" aria-hidden="true">
+                    <i className="fog fog-1" />
+                    <i className="fog fog-2" />
+                    <i className="fog fog-3" />
+                    <i className="fog fog-4" />
+                  </div>
+                )}
+
+                {/* Искры, поднимающиеся над обложкой, — у всех групп */}
+                <div className="artist-cover-sparks" aria-hidden="true">
+                  {Array.from({ length: 12 }, (_, i) => (
+                    <b key={i} style={{ '--s': i }} />
+                  ))}
+                </div>
                 <div className="artist-modal-cover-overlay" />
               </div>
             )}

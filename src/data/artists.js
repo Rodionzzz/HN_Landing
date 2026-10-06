@@ -430,10 +430,15 @@ socials: [
     id: 'jesha',
     vol: [2],
     name: 'Jesha',
-    genre: 'Metal',
+    genre: 'Alternative rock/ Nu-metal',
     description: 'JESHA — ивановская метал группа с почерком, которая цепляет с первых нот: мелодичный вокал, современное продюсирование и щепотка сценической дерзости. Каждый трек — как отдельная эмоция, которую хочется прожить на максимальной громкости.',
     image: asset('/images/artists/jesha.jpg'),
     cover: asset('/images/artists/jesha-cover.jpg'),
+    // Фото вертикальное: на ПК — широкая версия с размытыми краями (+ туман),
+    // на телефоне — вертикальная 4:5 (coverMobile)
+    coverMobile: asset('/images/artists/jesha-cover-mobile.jpg'),
+    coverPosition: 'center 12%',
+    coverFx: true, // туман по размытым краям обложки (на ПК)
     socials: [
       {
         type: 'yandex-music',

@@ -81,3 +81,236 @@
     ),
     #090909;
 }
+
+/* =========================
+   ЖИВЫЕ КРАЯ ОБЛОЖКИ (coverFx)
+   Для вертикальных фото, растянутых на широкую шапку размытыми
+   краями: по бокам плывёт туман и тлеет отсвет, центр с фото
+   остаётся чистым (маска). Только на ПК — на телефоне фото целиком.
+========================= */
+
+.artist-cover-fx {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  overflow: hidden;
+  pointer-events: none;
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 18%,
+    transparent 32%,
+    transparent 68%,
+    #000 82%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 18%,
+    transparent 32%,
+    transparent 68%,
+    #000 82%,
+    #000 100%
+  );
+}
+
+.artist-cover-fx .fog {
+  position: absolute;
+
+  width: 60%;
+  height: 90%;
+
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(215, 228, 228, 0.34) 0%,
+    rgba(165, 192, 196, 0.16) 40%,
+    transparent 70%
+  );
+  filter: blur(18px);
+
+  animation: coverFog 22s ease-in-out infinite alternate;
+}
+
+.artist-cover-fx .fog-1 {
+  left: -20%;
+  bottom: -25%;
+}
+
+.artist-cover-fx .fog-2 {
+  left: -10%;
+  top: -20%;
+  animation-duration: 28s;
+  animation-delay: -9s;
+  opacity: 0.7;
+}
+
+.artist-cover-fx .fog-3 {
+  right: -20%;
+  bottom: -20%;
+  animation-duration: 25s;
+  animation-delay: -4s;
+  animation-direction: alternate-reverse;
+}
+
+.artist-cover-fx .fog-4 {
+  right: -12%;
+  top: -25%;
+  animation-duration: 31s;
+  animation-delay: -15s;
+  animation-direction: alternate-reverse;
+  opacity: 0.6;
+}
+
+/* Красноватый отсвет снизу по краям */
+.artist-cover-fx::before,
+.artist-cover-fx::after {
+  content: '';
+
+  position: absolute;
+  bottom: -30%;
+
+  width: 40%;
+  height: 80%;
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 70, 30, 0.36),
+    transparent 65%
+  );
+
+  animation: coverEmberGlow 4.5s ease-in-out infinite alternate;
+}
+
+.artist-cover-fx::before {
+  left: -12%;
+}
+
+.artist-cover-fx::after {
+  right: -12%;
+  animation-delay: -2.2s;
+}
+
+@keyframes coverFog {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(12%, -8%, 0) scale(1.25);
+    opacity: 0.7;
+  }
+}
+
+@keyframes coverEmberGlow {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 800px) {
+  .artist-cover-fx {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .artist-cover-fx .fog,
+  .artist-cover-fx::before,
+  .artist-cover-fx::after {
+    animation: none;
+  }
+
+  .artist-cover-sparks {
+    display: none;
+  }
+}
+
+/* =========================
+   ИСКРЫ НАД ОБЛОЖКОЙ — у всех групп
+   Редкие огоньки поднимаются снизу вверх по всей ширине шапки.
+========================= */
+
+.artist-cover-sparks {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.artist-cover-sparks b {
+  position: absolute;
+  bottom: -10px;
+  left: calc(4% + var(--s) * 8%);
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+  background: #ffb36b;
+  box-shadow:
+    0 0 6px #ff7a2e,
+    0 0 12px rgba(255, 90, 30, 0.8);
+
+  opacity: 0;
+
+  animation: coverSpark 7s linear infinite;
+  animation-delay: calc(var(--s) * -1.3s);
+}
+
+.artist-cover-sparks b:nth-child(even) {
+  width: 4px;
+  height: 4px;
+
+  animation-duration: 8.5s;
+}
+
+.artist-cover-sparks b:nth-child(3n) {
+  width: 2px;
+  height: 2px;
+
+  animation-duration: 10s;
+  animation-name: coverSparkDrift;
+}
+
+@keyframes coverSpark {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate3d(22px, -460px, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes coverSparkDrift {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(-26px, -420px, 0);
+    opacity: 0;
+  }
+}

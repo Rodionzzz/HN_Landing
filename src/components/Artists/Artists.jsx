@@ -14,7 +14,7 @@ const EDITIONS = [
     vol: 1,
     year: 2025,
     meta: '31.10.2025 · AL_ROCK · ИВАНОВО',
-    caption: 'Те, с кого всё началось. Мы помним всех.',
+    caption: 'Те, с кого всё началось.',
     // Порядок карточек в VOL. 1 (кого нет в списке — в конец, по artists.js)
     order: [
       'vincent-drinks-absinth',

@@ -67,3 +67,17 @@
     padding-top: 64px; /* место под кнопку закрытия */
   }
 }
+
+/* Группы без обложки (пока нет фото): шапка ниже и с мягким фоном,
+   чтобы не было пустого чёрного блока на 420px */
+.artist-modal-header:not(:has(.artist-modal-cover)) {
+  min-height: 240px;
+
+  background:
+    radial-gradient(
+      circle at 20% 100%,
+      rgba(181, 31, 22, 0.25),
+      transparent 60%
+    ),
+    #090909;
+}

@@ -3,6 +3,8 @@ import { asset } from '../utils/asset'
 export const artists = [
   {
     id: 'rockin-bones',
+    // В каких выпусках HALLOWEEN NIGHT участвовала группа (1 — 2025, 2 — 2026)
+    vol: [1, 2],
     name: "Rockin' Bones",
     genre: 'Punk-rock / Horror-punk',
     description:
@@ -21,7 +23,25 @@ export const artists = [
         name: 'Яндекс Музыка',
         url: 'https://music.yandex.ru/artist/24938519',
         icon: asset('/icons/social/yandex-music.svg'),
-      }
+      },
+      {
+        type: 'apple-music',
+        name: 'Apple Music',
+        url: 'https://music.apple.com/us/artist/rockin-bones/391411851',
+        icon: asset('/icons/social/apple-music.svg'),
+      },
+      {
+        type: 'tidal',
+        name: 'TIDAL',
+        url: 'https://tidal.com/artist/67702513',
+        icon: asset('/icons/social/tidal.svg'),
+      },
+      {
+        type: 'amazon-music',
+        name: 'Amazon Music',
+        url: 'https://music.amazon.com/albums/B0FTGHK38H',
+        icon: asset('/icons/social/amazon-music.svg'),
+      },
     ],
     tracks: [
       {
@@ -52,6 +72,7 @@ export const artists = [
   },
   {
     id: 'electrozombie',
+    vol: [2],
     name: 'ЭЛЕКТРОЗОМБИ',
     genre: 'Punk-rock / Horror-punk / Glam-punk',
     description:
@@ -120,6 +141,7 @@ export const artists = [
 
   {
     id: 'issin',
+    vol: [2],
     name: 'ISSIN',
     genre: "rock'n'rave",
     description:
@@ -181,6 +203,7 @@ export const artists = [
   },
   {
     id: 'zherd',
+    vol: [2],
     name: 'ЖЕРДЬ',
     genre: 'Noise-rock / Post-hardcore / Sludge',
     description:
@@ -243,6 +266,7 @@ export const artists = [
 
   {
     id: 'methtripper',
+    vol: [1, 2],
     name: 'MethTripper',
     genre: 'Hardcore / Sludge',
     description:
@@ -323,6 +347,7 @@ export const artists = [
 
   {
     id: 'the-sadness',
+    vol: [2],
     name: 'The Sadness',
     genre: 'Criminal Post-pank',
     description:
@@ -403,6 +428,7 @@ socials: [
 
   {
     id: 'jesha',
+    vol: [2],
     name: 'Jesha',
     genre: 'Metal',
     description: 'JESHA — ивановская метал группа с почерком, которая цепляет с первых нот: мелодичный вокал, современное продюсирование и щепотка сценической дерзости. Каждый трек — как отдельная эмоция, которую хочется прожить на максимальной громкости.',
@@ -460,5 +486,131 @@ socials: [
         },
       },
     ],
-  }
+  },
+  // =========================================================
+  // VOL. 1 · 2025
+  // =========================================================
+  {
+    id: 'queen-of-witches',
+    vol: [1],
+    name: 'Королева Ведьм',
+    genre: 'Horror-rock / Punk / Folk',
+    image: asset('/images/artists/queen-of-witches.jpg'),
+    cover: asset('/images/artists/queen-of-witches-cover.jpg'),
+    // Головы в верхней части кадра — на ПК (широкая шапка модалки) сдвигаем фокус вверх
+    coverPosition: 'center top',
+    description:
+      'Ивановская рок-секта, которая с 2014 года собирает свою паству под знаменем «Мир. Любовь. Музыка». Их отвар — хоррор-рок со щепоткой панка и фолка, а песни растут из Лавкрафта, Стокера и Шелли: древние боги, вампиры и оживлённые мертвецы здесь чувствуют себя как дома. Их концерт больше похож на ритуал, чем на выступление. Ctulhu fhtagn, сектанты!',
+    socials: [
+      {
+        type: 'vk',
+        name: 'VK',
+        url: 'https://vk.ru/queenofdeadwitches',
+        icon: asset('/icons/social/vk.svg'),
+      },
+      {
+        type: 'youtube',
+        name: 'YouTube',
+        url: 'https://www.youtube.com/channel/UCd97w3oPGc2aY4zWSVlYIkw',
+        icon: asset('/icons/social/youtube.svg'),
+      },
+    ],
+    // Своих страниц на стримингах нет — играем треки с сайта
+    tracks: [
+      {
+        id: 'imperiya',
+        title: 'Империя наносит ответный удар!',
+        duration: '3:11',
+        audioUrl: asset('/audio/artists/queen-of-witches/imperiya.mp3'),
+      },
+      {
+        id: 'vsegda-odin',
+        title: 'Всегда один (демо ’24)',
+        duration: '4:51',
+        audioUrl: asset('/audio/artists/queen-of-witches/vsegda-odin.mp3'),
+      },
+    ],
+  },
+  {
+    id: 'madbillys-trio',
+    vol: [1],
+    name: "The Madbilly's Trio",
+    genre: 'Psychobilly / Rockabilly / Punk',
+    image: asset('/images/artists/madbillys-trio.jpg'),
+    cover: asset('/images/artists/madbillys-trio-cover.jpg'),
+    // Головы в верхней части кадра — на ПК (широкая шапка модалки) сдвигаем фокус вверх
+    coverPosition: 'center 25%',
+    description:
+      'Psychobilly from Ivanovo! Совместный проект ветеранов ивановской billy-сцены: Кирилл Марыганов (ex-HELLSTOMPERS), Станислав Козловский (ex-R.O.L.mixers, ex-Booze Boyz, ex-Saltones) и Дмитрий Осадчий (SUPERтемп) — один из ярчайших представителей местного панк-рока. Тяжёлый слэп контрабаса, бешеный ритм и гаражный драйв — звук, от которого дрожат гробовые доски. В 2026 году вышел их первый сингл «No more bitches on my way», попавший на сборник Lunatic Rampage 3. Иваново, приготовь свои кости — они будут плясать.',
+    socials: [
+      {
+        type: 'vk',
+        name: 'VK',
+        url: 'https://vk.ru/themadbillystrio',
+        icon: asset('/icons/social/vk.svg'),
+      },
+    ],
+    // Своих страниц на стримингах нет — играем треки с сайта
+    tracks: [
+      {
+        id: 'no-more-bitches',
+        title: 'No more bitches on my way',
+        duration: '2:05',
+        audioUrl: asset('/audio/artists/madbillys-trio/no-more-bitches.mp3'),
+      },
+    ],
+    // Видео из VK Видео: embedUrl — адрес плеера video_ext.php из кода вставки
+    // (ВК → видео → Поделиться → Экспортировать). Без hash на чужом сайте не играет.
+    videos: [
+      {
+        id: 'live-vertical',
+        title: 'Живое выступление',
+        source: 'VK Видео',
+        poster: asset('/images/artists/madbillys-video.jpg'),
+        embedUrl: 'https://vkvideo.ru/video_ext.php?oid=-233124489&id=456239029&hash=22506becaf9b4e68&hd=2',
+        vertical: true,
+      },
+    ],
+  },
+  {
+    id: 'vincent-drinks-absinth',
+    vol: [1],
+    name: 'Винсент пьет Абсент',
+    genre: 'Folk',
+    image: asset('/images/artists/vincent.jpg'),
+    cover: asset('/images/artists/vincent-cover.jpg'),
+    // Головы в верхней части кадра — на ПК (широкая шапка модалки) сдвигаем фокус вверх
+    coverPosition: 'center 15%',
+    description:
+      'Винсент пьет абсент и играет самый разный фолк, который только приходит в его буйную голову: от традиционных германских баллад до современных экспериментов, от легенд о драконах до шуточных зарисовок про пьяных дурачков. Их концерты — это танцы, подпевания и пенное, а фолк для них — дело совместное и дружеское. «Вы нас точно запомните», — обещают они. И мы верим.',
+    socials: [
+      {
+        type: 'vk',
+        name: 'VK',
+        url: 'https://vk.ru/vincentdrinksabsinth',
+        icon: asset('/icons/social/vk.svg'),
+      },
+      {
+        type: 'telegram',
+        name: 'Telegram',
+        url: 'https://t.me/vincentdrinksabsinth',
+        icon: asset('/icons/social/telegram.svg'),
+      },
+    ],
+    // Своих страниц на стримингах нет — играем треки с сайта
+    tracks: [
+      {
+        id: 'mavka',
+        title: 'Мавка',
+        duration: '2:05',
+        audioUrl: asset('/audio/artists/vincent/mavka.mp3'),
+      },
+      {
+        id: 'oda-lysine',
+        title: 'Ода Лысине',
+        duration: '2:35',
+        audioUrl: asset('/audio/artists/vincent/oda-lysine.mp3'),
+      },
+    ],
+  },
 ];

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './ArtistModal.css'
+import ArtistVideos from './ArtistVideos'
 
 function ArtistModal({ artist, onClose }) {
   const audioRef = useRef(null)
@@ -210,6 +211,7 @@ const handleEnded = () => {
                 className="artist-modal-cover"
                 style={{
                   backgroundImage: `url(${artist.cover})`,
+                  backgroundPosition: artist.coverPosition,
                 }}
               >
                 {/* На мобилке фото показывается целиком через <img>,
@@ -334,6 +336,8 @@ const handleEnded = () => {
               </div>
             </section>
           )}
+
+          <ArtistVideos artist={artist} />
 
           {/* =========================
               SOCIALS

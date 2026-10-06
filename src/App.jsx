@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 import Header from './components/Header/Header'
 import Hero from './components/Hero/Hero'
-import ArtistCard from './components/ArtistCard/ArtistCard'
+import Artists from './components/Artists/Artists'
 import ArtistModal from './components/ArtistModal/ArtistModal'
 import Footer from './components/Footer/Footer'
 import TicketModal from './components/TicketModal/TicketModal'
@@ -145,24 +145,8 @@ function App() {
             </div>
           </section>
 
-          {/* ARTISTS */}
-          <section className="section artists" id="artists">
-            <div className="section-label"></div>
-
-            <div className="section-heading">
-              <h2>ARTISTS</h2>
-            </div>
-
-            <div className="artists-grid">
-              {artists.map((artist, index) => (
-                <ArtistCard
-                  key={artist.id}
-                  artist={artist}
-                  index={index}
-                />
-              ))}
-            </div>
-          </section>
+          {/* ARTISTS — составы по выпускам (VOL. 2 / VOL. 1) */}
+          <Artists />
 
 {/* SCHEDULE */}
 <Schedule />

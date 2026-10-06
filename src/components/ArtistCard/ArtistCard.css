@@ -1,0 +1,65 @@
+/* =========================
+   ARTIST CARD — ЗАГЛУШКА БЕЗ ФОТО
+   Основные стили карточки пока живут в App.css; здесь — только
+   заглушка для групп, у которых ещё нет фото (image).
+========================= */
+
+.artist-card-placeholder {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at 50% 38%,
+      rgba(181, 31, 22, 0.28),
+      transparent 55%
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.025) 0 2px,
+      transparent 2px 12px
+    ),
+    #0a0807;
+
+  transition: transform 0.8s cubic-bezier(.2, .8, .2, 1);
+}
+
+.artist-card-placeholder span {
+  transform: translateY(-36px);
+
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(228, 91, 32, 0.4);
+
+  font-family: 'Anton', 'Impact', sans-serif;
+  font-size: clamp(130px, 17vw, 220px);
+  line-height: 1;
+  letter-spacing: 0.02em;
+
+  user-select: none;
+
+  transition:
+    -webkit-text-stroke-color 0.4s ease,
+    text-shadow 0.4s ease;
+}
+
+.artist-card:hover .artist-card-placeholder {
+  transform: scale(1.04);
+}
+
+.artist-card:hover .artist-card-placeholder span {
+  -webkit-text-stroke-color: rgba(228, 91, 32, 0.8);
+
+  text-shadow: 0 0 40px rgba(228, 91, 32, 0.25);
+}
+
+/* Длинные названия (The Madbilly's Trio, Винсент пьет Абсент) не влезали
+   в одну строку на телефоне: в App.css у h3 стоит nowrap. Разрешаем перенос —
+   короткие названия так и остаются в одну строку. */
+.artist-card-text h3 {
+  white-space: normal;
+  overflow-wrap: break-word;
+}

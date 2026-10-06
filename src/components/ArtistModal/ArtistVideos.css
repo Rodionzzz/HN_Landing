@@ -1,0 +1,370 @@
+/* =========================
+   ВИДЕО ГРУППЫ
+   Карточка-«сторис» в модалке + окно просмотра поверх всего.
+========================= */
+
+.artist-videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
+  gap: 16px;
+}
+
+.artist-video-card {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  padding: 16px 22px 16px 16px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+
+  transition:
+    border-color 0.35s ease,
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+/* Размытая обложка ролика — фоном карточки */
+.artist-video-card-bg {
+  position: absolute;
+  inset: -30px;
+
+  background-position: center;
+  background-size: cover;
+
+  filter: blur(28px) brightness(0.35) saturate(1.2);
+  opacity: 0.85;
+
+  transition: opacity 0.4s ease;
+}
+
+.artist-video-card:hover,
+.artist-video-card:focus-visible {
+  border-color: rgba(255, 87, 48, 0.55);
+  box-shadow: 0 18px 50px rgba(255, 60, 20, 0.16);
+  transform: translateY(-2px);
+}
+
+.artist-video-card:hover .artist-video-card-bg {
+  opacity: 1;
+}
+
+/* Обложка 9:16 */
+.artist-video-thumb {
+  position: relative;
+  z-index: 1;
+
+  flex: 0 0 auto;
+  width: 112px;
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+
+  border-radius: 12px;
+  background: #000;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
+}
+
+.artist-video-thumb.is-vertical {
+  aspect-ratio: 9 / 16;
+}
+
+.artist-video-thumb:not(.is-vertical) {
+  width: 200px;
+}
+
+.artist-video-thumb img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.8s ease;
+}
+
+.artist-video-card:hover .artist-video-thumb img {
+  transform: scale(1.06);
+}
+
+/* Кнопка ▶ с «пульсом» */
+.artist-video-play {
+  position: absolute;
+  inset: 0;
+
+  display: grid;
+  place-items: center;
+
+  background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, 0.45));
+}
+
+.artist-video-play span {
+  position: relative;
+
+  display: grid;
+  place-items: center;
+
+  width: 44px;
+  height: 44px;
+
+  padding-left: 3px;
+
+  border-radius: 50%;
+  background: #ff5730;
+  box-shadow: 0 6px 20px rgba(255, 87, 48, 0.55);
+
+  color: #fff;
+  font-size: 14px;
+
+  transition: transform 0.3s ease;
+}
+
+.artist-video-play span::after {
+  content: '';
+
+  position: absolute;
+  inset: -6px;
+
+  border: 1px solid rgba(255, 87, 48, 0.7);
+  border-radius: 50%;
+
+  animation: artistVideoPulse 2.2s ease-out infinite;
+}
+
+.artist-video-card:hover .artist-video-play span {
+  transform: scale(1.1);
+}
+
+@keyframes artistVideoPulse {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.artist-video-info {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  min-width: 0;
+}
+
+.artist-video-info small {
+  color: #ff5730;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.artist-video-info strong {
+  color: #fff;
+
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.artist-video-cta {
+  margin-top: 6px;
+
+  color: rgba(255, 255, 255, 0.6);
+
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  transition: color 0.3s ease;
+}
+
+.artist-video-cta i {
+  display: inline-block;
+
+  font-style: normal;
+
+  transition: transform 0.3s ease;
+}
+
+.artist-video-card:hover .artist-video-cta {
+  color: #fff;
+}
+
+.artist-video-card:hover .artist-video-cta i {
+  transform: translateX(5px);
+}
+
+/* ---------- Окно просмотра ---------- */
+
+.video-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+
+  padding: 24px;
+
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(10px);
+
+  animation: videoLightboxIn 0.3s ease;
+}
+
+.video-lightbox-frame {
+  width: min(92vw, 1100px);
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 87, 48, 0.35);
+  border-radius: 18px;
+  background: #000;
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.8),
+    0 0 60px rgba(255, 60, 20, 0.15);
+
+  animation: videoFrameIn 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Вертикальное — по высоте экрана, как сторис */
+.video-lightbox-frame.is-vertical {
+  width: auto;
+  height: min(84vh, 860px);
+  max-width: 92vw;
+  aspect-ratio: 9 / 16;
+}
+
+.video-lightbox-frame iframe {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+}
+
+.video-lightbox-caption {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.video-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  width: 46px;
+  height: 46px;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.5);
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.video-lightbox-close:hover {
+  border-color: #ff5730;
+  transform: rotate(90deg);
+}
+
+.video-lightbox-close span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 20px;
+  height: 1px;
+
+  background: #fff;
+}
+
+.video-lightbox-close span:first-child {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.video-lightbox-close span:last-child {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+@keyframes videoLightboxIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes videoFrameIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+}
+
+@media (max-width: 600px) {
+  .artist-video-card {
+    gap: 16px;
+    padding: 12px 14px 12px 12px;
+  }
+
+  .artist-video-thumb {
+    width: 92px;
+  }
+
+  .video-lightbox {
+    padding: 12px;
+  }
+
+  /* На телефоне вертикальное видео — почти во весь экран */
+  .video-lightbox-frame.is-vertical {
+    height: auto;
+    width: min(92vw, calc(80vh * 9 / 16));
+  }
+
+  .video-lightbox-close {
+    top: 12px;
+    right: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .artist-video-play span::after,
+  .video-lightbox,
+  .video-lightbox-frame {
+    animation: none;
+  }
+}

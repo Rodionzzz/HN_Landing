@@ -59,7 +59,9 @@ function ArtistVideos({ artist }) {
             >
               {video.poster && <img src={video.poster} alt="" loading="lazy" />}
               <span className="artist-video-play" aria-hidden="true">
-                <span>▶</span>
+                <span>
+                  <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5v9l7.5-4.5z" fill="currentColor" /></svg>
+                </span>
               </span>
             </span>
 

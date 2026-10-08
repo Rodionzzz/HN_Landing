@@ -299,7 +299,12 @@ const handleEnded = () => {
   }
 >
   <span className="artist-track-play-icon">
-    {isPlaying ? '❚❚' : '▶'}
+    {/* SVG, а не символы ▶/❚❚: iOS рисует ▶ как цветной эмодзи */}
+    {isPlaying ? (
+      <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 1.5h2.6v9H2.5zM6.9 1.5h2.6v9H6.9z" fill="currentColor" /></svg>
+    ) : (
+      <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5v9l7.5-4.5z" fill="currentColor" /></svg>
+    )}
   </span>
 </button>
 

@@ -314,3 +314,15 @@
     opacity: 0;
   }
 }
+
+/* Иконки плей/пауза в треках — SVG (символ ▶ на iOS становится эмодзи) */
+.artist-track-play-icon {
+  display: flex;
+}
+
+.artist-track-play-icon svg {
+  display: block;
+
+  width: 11px;
+  height: 11px;
+}

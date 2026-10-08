@@ -1,0 +1,265 @@
+/* =========================
+   ZONE MODAL
+   Окно зоны собрано на классах окна группы (artist-modal-* в App.css):
+   тот же фон, рамка, искры, кнопка закрытия и появление.
+   Здесь — только слайдшоу в шапке.
+========================= */
+
+/* Окно зоны компактнее окна группы: треков и соцсетей нет */
+.zone-modal .zone-modal-window {
+  width: min(880px, 100%);
+}
+
+/* Двойной класс перебивает правило «группа без обложки» из ArtistModal.css */
+.artist-modal-header.zone-modal-header {
+  min-height: 460px;
+
+  background: #090909;
+}
+
+.zone-slider {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.zone-slider.is-dragging {
+  cursor: grabbing;
+}
+
+.zone-slider-track {
+  display: flex;
+
+  height: 100%;
+
+  transition: transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+.zone-slider.is-dragging .zone-slider-track {
+  transition: none;
+}
+
+.zone-slide {
+  flex: 0 0 100%;
+
+  overflow: hidden;
+}
+
+.zone-slide img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  filter: contrast(1.05) saturate(0.85) brightness(0.8);
+  transform: scale(1.04);
+
+  pointer-events: none;
+
+  transition: filter 0.8s ease;
+}
+
+/* Активное фото медленно «наезжает» — как живая камера */
+.zone-slide.is-active img {
+  filter: contrast(1.05) saturate(0.9) brightness(1);
+  animation: zoneKenBurns 6.5s ease-out forwards;
+}
+
+@keyframes zoneKenBurns {
+  from {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.14) translate3d(-1.5%, -1%, 0);
+  }
+}
+
+/* Полоски прогресса как в сторис */
+.zone-slider-progress {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  right: 84px;
+  z-index: 4;
+
+  display: flex;
+  gap: 6px;
+
+  pointer-events: none;
+}
+
+.zone-slider-progress span {
+  position: relative;
+
+  flex: 1;
+  height: 3px;
+
+  overflow: hidden;
+
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.zone-slider-progress span.is-done {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.zone-slider-progress i {
+  position: absolute;
+  inset: 0;
+
+  transform-origin: left center;
+
+  background: #ff5730;
+  box-shadow: 0 0 10px rgba(255, 87, 48, 0.8);
+}
+
+.zone-slider-progress i.is-running {
+  transform: scaleX(0);
+  animation: zoneProgress linear forwards;
+}
+
+.zone-slider-progress i.is-static {
+  transform: scaleX(1);
+}
+
+@keyframes zoneProgress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Стрелки — по бокам, появляются при наведении */
+.zone-slider-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 4;
+
+  width: 46px;
+  height: 46px;
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+
+  opacity: 0;
+  transform: translateY(-50%) scale(0.9);
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.zone-slider-arrow.is-prev {
+  left: 20px;
+}
+
+.zone-slider-arrow.is-next {
+  right: 20px;
+}
+
+.zone-slider:hover .zone-slider-arrow,
+.zone-slider-arrow:focus-visible {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+.zone-slider-arrow:hover {
+  border-color: #ff5730;
+  background: rgba(255, 87, 48, 0.25);
+}
+
+/* Нет фото — иконка зоны */
+.zone-slider-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+
+  cursor: default;
+
+  background:
+    radial-gradient(circle at 50% 45%, rgba(181, 31, 22, 0.3), transparent 60%),
+    #090909;
+}
+
+.zone-slider-empty .sch-zone-icon {
+  font-size: 72px;
+}
+
+.zone-slider-empty small {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ---------- Мобилка ---------- */
+
+@media (max-width: 800px) {
+  .artist-modal-header.zone-modal-header {
+    min-height: 0;
+  }
+
+  /* Фото идёт блоком 4:3, заголовок — под ним с наездом (ArtistModal.css) */
+  .zone-slider {
+    position: relative;
+    inset: auto;
+
+    aspect-ratio: 4 / 3;
+  }
+
+  .zone-slider-progress {
+    top: 18px;
+    left: 18px;
+    right: 76px;
+  }
+}
+
+/* На тач-экранах листают пальцем: стрелки маленькие и всегда видны */
+@media (hover: none) {
+  .zone-slider-arrow {
+    width: 36px;
+    height: 36px;
+
+    font-size: 14px;
+
+    opacity: 0.85;
+    transform: translateY(-50%);
+  }
+
+  .zone-slider-arrow.is-prev {
+    left: 10px;
+  }
+
+  .zone-slider-arrow.is-next {
+    right: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zone-slider-track {
+    transition: none;
+  }
+
+  .zone-slide.is-active img {
+    animation: none;
+  }
+}

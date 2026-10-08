@@ -5,6 +5,8 @@ import { asset } from '../utils/asset'
 // положи их, например, в /images/photos/thumb/ и поменяй thumb-путь —
 // грид архива и боковые "пики" карусели сразу станут заметно легче.
 
+// Требование площадки: на сайте не должно быть алкоголя.
+// Фото 14 и 15 убраны (бокалы в кадре), 16 — обрезанная копия без бутылок.
 export const photos = [
   {
     id: 1,
@@ -98,23 +100,9 @@ export const photos = [
     year: 2025,
   },
   {
-    id: 14,
-    src: asset('/images/photos/14.jpg'),
-    thumb: asset('/images/photos/14.jpg'),
-    alt: 'Halloween Night vol.1 — момент 14',
-    year: 2025,
-  },
-  {
-    id: 15,
-    src: asset('/images/photos/15.jpg'),
-    thumb: asset('/images/photos/15.jpg'),
-    alt: 'Halloween Night vol.1 — момент 15',
-    year: 2025,
-  },
-  {
     id: 16,
-    src: asset('/images/photos/16.jpg'),
-    thumb: asset('/images/photos/16.jpg'),
+    src: asset('/images/photos/16-crop.jpg'),
+    thumb: asset('/images/photos/16-crop.jpg'),
     alt: 'Halloween Night vol.1 — момент 16',
     year: 2025,
   },

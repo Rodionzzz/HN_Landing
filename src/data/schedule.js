@@ -11,7 +11,7 @@ export const EVENT_DATE = '2026-10-31'
 
 export const program = [
   {
-    start: '16:00',
+    start: '16:30',
     type: 'doors',
     label: 'Вход',
     title: 'Открытие дверей',
@@ -52,7 +52,7 @@ export const program = [
 // Фото: Unsplash (свободная лицензия) — public/images/zones/.
 // ВАЖНО: требование площадки — на сайте не упоминаем алкоголь
 // (ни в текстах, ни на фото, ни в иконках).
-export const ZONES_HOURS = '16:00 — 00:00'
+export const ZONES_HOURS = '16:30 — 00:00'
 
 const zonePhotos = (id, count) =>
   Array.from({ length: count }, (_, i) => asset(`/images/zones/${id}-${i + 1}.jpg`))

@@ -69,7 +69,7 @@ function Schedule() {
   return (
     <section className="schedule-section" id="schedule">
       <div className="schedule-heading">
-        <span>31 ОКТЯБРЯ · ДВЕРИ В 16:00</span>
+        <span>31 ОКТЯБРЯ · ДВЕРИ В 16:30</span>
         <h2>РАСПИСАНИЕ</h2>
       </div>
 

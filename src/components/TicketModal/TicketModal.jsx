@@ -37,9 +37,12 @@ function TicketModal({ isOpen, onClose }) {
     <div
       className="ticket-modal"
       onMouseDown={handleBackdropClick}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="ticket-modal-title"
+      aria-describedby="ticket-modal-description"
     >
       <div className="ticket-modal-window">
-
         <button
           type="button"
           className="ticket-modal-close"
@@ -50,19 +53,29 @@ function TicketModal({ isOpen, onClose }) {
           <span />
         </button>
 
-        <div className="ticket-modal-header">
-          <span></span>
-          <strong></strong>
-        </div>
+        <div className="ticket-modal-upcoming">
+          <span className="ticket-modal-upcoming-label">
+            HALLOWEEN NIGHT
+          </span>
 
-        <div className="ticket-modal-frame">
-          <iframe
-            src="https://qtickets.ru/event/258990?base_color=e07400"
-            title="Покупка билетов на HALLOWEEN NIGHT VOL. 2"
-            frameBorder="0"
-          />
-        </div>
+          <h2 id="ticket-modal-title">
+            Билеты на
+            <span>VOL. 3</span>
+          </h2>
 
+          <p id="ticket-modal-description">
+            Продажа откроется позже. Следите за анонсами,
+            чтобы не пропустить начало продаж.
+          </p>
+
+          <button
+            type="button"
+            className="ticket-modal-upcoming-button"
+            onClick={onClose}
+          >
+            Понятно
+          </button>
+        </div>
       </div>
     </div>
   )

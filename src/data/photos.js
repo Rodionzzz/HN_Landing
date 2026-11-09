@@ -1,12 +1,32 @@
 import { asset } from '../utils/asset'
 
-// thumb сейчас указывает на тот же файл, что и src — это временно.
-// Когда сожмёшь/уменьшишь фото (WebP, ~400–500px по ширине для превью),
-// положи их, например, в /images/photos/thumb/ и поменяй thumb-путь —
-// грид архива и боковые "пики" карусели сразу станут заметно легче.
+// Для архива 2025 thumb и src сейчас совпадают. Для фото 2026 года
+// дополнительно генерируются отдельные WebP-превью — см. photos2026 ниже.
 
 // Требование площадки: на сайте не должно быть алкоголя.
 // Фото 14 и 15 убраны (бокалы в кадре), 16 — обрезанная копия без бутылок.
+
+// Фото 2026 года. Порядок альбомов важен: сначала Дима, затем Скиф.
+const photos2026Albums = [
+  { key: 'dima', photographer: 'Димы', count: 252 },
+  { key: 'skif', photographer: 'Скифа', count: 196 },
+]
+
+const photos2026 = photos2026Albums.flatMap(
+  ({ key, photographer, count }) =>
+    Array.from({ length: count }, (_, index) => {
+      const number = String(index + 1).padStart(3, '0')
+
+      return {
+        id: `${key}-${number}`,
+        src: asset(`/images/photos/2026/${key}-${number}.webp`),
+        thumb: asset(`/images/photos/2026/thumbs/${key}-${number}.webp`),
+        alt: `Halloween Night vol.2 — фото ${photographer} ${index + 1}`,
+        year: 2026,
+      }
+    }),
+)
+
 export const photos = [
   {
     id: 1,
@@ -141,9 +161,5 @@ export const photos = [
     alt: 'Halloween Night vol.1 — момент 21',
     year: 2025,
   },
-  // добавляй сколько нужно
-
-  // Когда появятся фото с vol.2 (2026), просто добавляй сюда объекты
-  // с year: 2026 — вкладка "2026" в архиве разблокируется сама,
-  // как только в массиве появится хотя бы одно фото этого года.
+  ...photos2026,
 ]
